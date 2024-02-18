@@ -1,9 +1,10 @@
 #include "Controller.h"
 
 Controller::Controller()
-	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Cat & Mouse", sf::Style::Default)
+	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Cat & Mouse", sf::Style::Default), m_board(), m_level(1)
 {
 	this->m_window.setFramerateLimit(60);
+	this->m_board.printLevel();
 }
 
 Controller::~Controller()

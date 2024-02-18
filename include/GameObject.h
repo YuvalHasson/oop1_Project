@@ -10,13 +10,15 @@ private:
 public:
 	GameObject() = default;
 	GameObject(char, double, double); //cahr and location
-	virtual ~GameObject() = 0;
+	virtual ~GameObject();
 
-	virtual void draw() = 0;
+	virtual void draw();
 
 	//get
 	virtual Vertex getLocation() const;
+	virtual char getChar() const;
 
 	//set
 	virtual void setLocation(double, double);
+	virtual void setChar(char);
 };

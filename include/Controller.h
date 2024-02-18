@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <vector>
+
 #include "Utilities.h"
 #include "Board.h"
 
@@ -13,6 +13,8 @@ private:
 	sf::Texture m_texture[OBJ_AMOUNT];
 
 	Board m_board;
+
+	int m_level;
 	
 public:
 	Controller();
