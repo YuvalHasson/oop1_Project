@@ -1,9 +1,8 @@
 #include "GameObject.h"
 
-GameObject::GameObject(char objRep, double x, double y)
+GameObject::GameObject()
+	:m_location(), m_objectRep()
 {
-	this->m_objectRep = objRep;
-	this->setLocation(x, y);
 }
 
 GameObject::~GameObject()
@@ -24,10 +23,10 @@ void GameObject::draw()
 {
 }
 
-void GameObject::setLocation(double x, double y)
+void GameObject::setLocation(Vertex v)
 {
-	this->m_location.m_x = x;
-	this->m_location.m_y = y;
+	this->m_location.m_x = v.m_x;
+	this->m_location.m_y = v.m_y;
 }
 
 void GameObject::setChar(char obj)

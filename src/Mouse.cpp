@@ -1,6 +1,7 @@
 #include "Mouse.h"
 
 Mouse::Mouse()
+	:m_texture()
 {
 	m_lives = 3;
 	m_keys = 0;
@@ -20,9 +21,12 @@ void Mouse::move(MovingObject&)
 {
 }
 
-
-//
-void Mouse::print()
+sf::Texture* Mouse::getTexture() const
 {
-	//std::cout << getLocation().m_x << " " << getLocation().m_y << std::endl;
+	return this->m_texture;
+}
+
+void Mouse::setTexture(sf::Texture* texture)
+{
+	this->m_texture = texture;
 }

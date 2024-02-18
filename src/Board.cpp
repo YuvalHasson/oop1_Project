@@ -16,19 +16,20 @@ void Board::getLevel(const int level)
 	}
 	this->m_baord.clear();
 
-	size_t row = 0;
-	for (auto line = std::string(); std::getline(lvl, line); row++)
+	for (auto line = std::string(); std::getline(lvl, line);)//line == col
 	{			
-		std::vector<GameObject> objectLine;
-		for (size_t col = 0; col < line.size(); col++)//col
-		{	
-			auto tmpObject = GameObject();
-			tmpObject.setChar(line[col]);
-			tmpObject.setLocation(row, col);
-			objectLine.push_back(tmpObject);
-		}
-		this->m_baord.push_back(objectLine);
+		this->m_baord.push_back(line);
 	}
+}
+
+int Board::getBoardSize() const
+{
+	return this->m_baord.size();
+}
+
+std::vector<std::string> Board::getBoard() const
+{
+	return this->m_baord;
 }
 
 void Board::printLevel() const
@@ -37,7 +38,7 @@ void Board::printLevel() const
 	{
 		for (size_t j = 0; j < this->m_baord[i].size(); j++)
 		{
-			std::cout << this->m_baord[i][j].getChar();
+			std::cout << this->m_baord[i][j];
 		}
 		std::cout << "\n";
 	}

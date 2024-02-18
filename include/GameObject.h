@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Utilities.h"
+#include <SFML/Graphics.hpp>
 
 class GameObject
 {
@@ -8,17 +9,18 @@ private:
 	Vertex m_location;
 	char m_objectRep;
 public:
-	GameObject() = default;
-	GameObject(char, double, double); //cahr and location
+	GameObject();
 	virtual ~GameObject();
 
-	virtual void draw();
+	virtual void draw() = 0;
 
 	//get
 	virtual Vertex getLocation() const;
 	virtual char getChar() const;
+	virtual sf::Texture* getTexture() const = 0;
 
 	//set
-	virtual void setLocation(double, double);
+	virtual void setLocation(Vertex);
 	virtual void setChar(char);
+	virtual void setTexture(sf::Texture*) = 0;
 };

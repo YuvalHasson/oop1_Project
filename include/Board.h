@@ -1,16 +1,14 @@
 #pragma once
 
 #include <vector>
-#include <memory>
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "GameObject.h"
 
 class Board
 {
 private:
-	std::vector<std::vector<GameObject>> m_baord;
+	std::vector<std::string> m_baord;
 
 public:
 	Board();
@@ -18,6 +16,10 @@ public:
 	
 	//init level
 	void getLevel(const int);
+
+	//get
+	int getBoardSize() const;
+	std::vector<std::string> getBoard() const;
 
 	//print
 	void printLevel() const;

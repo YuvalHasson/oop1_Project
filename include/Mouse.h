@@ -4,6 +4,14 @@
 
 class Mouse : public MovingObject
 {
+private:
+	sf::Sprite m_mouse;
+	sf::Texture* m_texture;
+
+	int m_lives;
+	int m_keys;
+
+
 public:
 	Mouse();
 	virtual ~Mouse();
@@ -14,9 +22,9 @@ public:
 	//move
 	virtual void move(MovingObject&);
 
-	void print();
+	//get
+	virtual sf::Texture* getTexture() const;
 
-private:
-	int m_lives;
-	int m_keys;
+	//set
+	virtual void setTexture(sf::Texture*);
 };

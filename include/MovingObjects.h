@@ -15,4 +15,11 @@ public:
 
 	//move
 	virtual void move(MovingObject&) = 0;
+
+	//get
+	virtual sf::Texture* getTexture() const = 0;
+
+	//set
+	virtual void setTexture(sf::Texture*) = 0;
+
 };

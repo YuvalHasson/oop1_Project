@@ -4,6 +4,8 @@
 
 #include "Utilities.h"
 #include "Board.h"
+#include "Mouse.h"
+
 
 class Controller
 {
@@ -14,6 +16,8 @@ private:
 
 	Board m_board;
 
+	Mouse m_mouse;
+
 	int m_level;
 	
 public:
@@ -21,4 +25,9 @@ public:
 	~Controller();
 
 	void run();
+
+	void buildVectors();
+
+	//set
+	void setObjects(char, Vertex);
 };
