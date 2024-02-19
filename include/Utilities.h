@@ -20,5 +20,11 @@ const int OBJ_AMOUNT = 7;
 
 namespace TEXTURE
 {
-	constexpr int mouse = 1;
+	constexpr int mouse = 0;
+	constexpr int cat = 1;
+	constexpr int cheese = 2;
+	constexpr int door = 3;
+	constexpr int key = 4;
+	constexpr int present = 5;
+	constexpr int wall = 6;
 }

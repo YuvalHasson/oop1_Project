@@ -9,4 +9,8 @@ private:
 public:
 	StaticObjects(Vertex, Size);
 	virtual ~StaticObjects();
+
+	//get
+	virtual sf::Sprite getSprite() const = 0;
+
 };

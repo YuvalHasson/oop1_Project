@@ -6,6 +6,7 @@
 class Wall : public StaticObjects
 {
 private:
+	sf::Sprite m_wall;
 	sf::Texture* m_texture;
 	
 public:
@@ -14,7 +15,8 @@ public:
 
 	//get
 	virtual sf::Texture* getTexture() const;
+	virtual sf::Sprite getSprite() const;
 
 	//set
-	virtual void setTexture(sf::Texture*);
+	virtual void setSprite(sf::Texture*);
 };

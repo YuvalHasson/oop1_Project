@@ -6,6 +6,7 @@
 #include <iostream>
 #include <memory>
 
+#include "Resources.h"
 #include "Mouse.h"
 #include "Wall.h"
 
@@ -26,6 +27,8 @@ private:
 public:
 	Board(int, int, int);
 	~Board() = default;
+
+	void draw(sf::RenderWindow*);
 	
 	//init level
 	void getLevel(const int);
@@ -34,6 +37,4 @@ public:
 	//get
 	int getLives() const;
 	int getPoints() const;
-
-	//print
 };

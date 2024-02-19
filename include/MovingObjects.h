@@ -12,12 +12,13 @@ public:
 	virtual ~MovingObject();
 
 	//move
-	virtual void move(MovingObject&) = 0;
+	virtual void move(sf::Time) = 0;
 
 	//get
 	virtual sf::Texture* getTexture() const = 0;
+	virtual sf::Sprite getSprite() const = 0;
 
 	//set
-	virtual void setTexture(sf::Texture*) = 0;
+	virtual void setSprite(sf::Texture*) = 0;
 
 };

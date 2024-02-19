@@ -17,9 +17,10 @@ public:
 	virtual Vertex getLocation() const;
 	virtual Size getSize() const;
 	virtual sf::Texture* getTexture() const = 0;
+	virtual sf::Sprite getSprite() const = 0;
 
 	//set
 	virtual void setLocation(Vertex);
 	virtual void setSize(Size);
-	virtual void setTexture(sf::Texture*) = 0;
+	virtual void setSprite(sf::Texture*) = 0;
 };

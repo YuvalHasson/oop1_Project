@@ -8,7 +8,7 @@ class Rescources
 {
 private:
 	std::string m_imgName[OBJ_AMOUNT] = {
-		"Mouse.png", "Cat.png", " Cheese.png",
+		"Mouse.png", "Cat.png", "Cheese.png",
 		"Door.png", "Key.png", "Present.png", "Wall.png"
 	};
 	sf::Texture m_texture[OBJ_AMOUNT];

@@ -4,6 +4,19 @@ Board::Board(int level, int lives, int points)
 	:m_lives(lives), m_points(points), m_keys(0)
 {
 	this->getLevel(level);
+	
+}
+
+void Board::draw(sf::RenderWindow* window)
+{
+	for (size_t i = 0; i < this->m_staticObjects.size(); i++)
+	{
+		window->draw(this->m_staticObjects[i]->getSprite());
+	}
+	for (size_t i = 0; i < this->m_movingObjects.size(); i++)
+	{
+		window->draw(this->m_movingObjects[i]->getSprite());
+	}
 }
 
 void Board::getLevel(const int level)
@@ -17,6 +30,7 @@ void Board::getLevel(const int level)
 	}
 	this->m_movingObjects.clear();
 	this->m_staticObjects.clear();
+	
 
 	lvl >> m_rows >> m_cols;
 
@@ -35,20 +49,21 @@ void Board::initVector(char c, Vertex loc)
 	float size = (windowHeight - loc.m_y) / std::max(m_rows, m_cols);
 	if (c != ' ')
 	{
+		
 		switch (c)
 		{
 		case '%': //mouse
 			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), MouseSpeed, m_lives, m_keys));
-
+			this->m_movingObjects.back()->setSprite(Rescources::getResource().getTexture(TEXTURE::mouse));
 			break;
 		case '#': //Wall
 			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
+			this->m_staticObjects.back()->setSprite(Rescources::getResource().getTexture(TEXTURE::wall));
 			break;
 		default:
 			break;
 		}
 	}
-
 }
 
 int Board::getLives() const

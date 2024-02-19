@@ -16,11 +16,12 @@ public:
 	virtual ~Mouse();
 
 	//move
-	virtual void move(MovingObject&);
+	virtual void move(sf::Time);
 
 	//get
 	virtual sf::Texture* getTexture() const;
+	virtual sf::Sprite getSprite() const;
 
 	//set
-	virtual void setTexture(sf::Texture*);
+	virtual void setSprite(sf::Texture*);
 };

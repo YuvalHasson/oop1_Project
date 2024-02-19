@@ -25,8 +25,5 @@ public:
 
 	void run();
 
-	//void buildVectors();
 
-	////set
-	//void setObjects(char, Vertex);
 };
