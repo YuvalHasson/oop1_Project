@@ -33,6 +33,7 @@ void Controller::run()
 		}
 		//draw
 		m_board.draw(&m_window);
+		m_board.initClock();
 
 		this->m_window.display();
 	}

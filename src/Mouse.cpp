@@ -12,7 +12,25 @@ Mouse::~Mouse()
 
 void Mouse::move(sf::Time deltaTime)
 {
-	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		this->directionUp();
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		this->directionDown();
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		this->directionRight();
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		this->directionLeft();
+	}
+	this->m_mouse.move(this->getDirection() * MouseSpeed * deltaTime.asSeconds());
+	this->resetDirection();
+	//this->m_mouse.move(this->getDirection() * MouseSpeed * deltaTime.asSeconds()); // how to move it dont delete it
 }
 
 sf::Texture* Mouse::getTexture() const

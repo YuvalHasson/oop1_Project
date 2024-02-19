@@ -18,6 +18,8 @@ private:
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 
+	sf::Clock m_clock;
+
 	int m_rows, m_cols;
 
 	int m_lives;
@@ -33,6 +35,7 @@ public:
 	//init level
 	void getLevel(const int);
 	void initVector(char, Vertex);
+	void initClock();
 
 	//get
 	int getLives() const;

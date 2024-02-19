@@ -66,6 +66,16 @@ void Board::initVector(char c, Vertex loc)
 	}
 }
 
+void Board::initClock()
+{
+	auto deltaTime = this->m_clock.restart();
+	
+	for (size_t i = 0; i < this->m_movingObjects.size(); i++)
+	{
+		this->m_movingObjects[i]->move(deltaTime);
+	}
+}
+
 int Board::getLives() const
 {
 	return this->m_lives;
