@@ -1,8 +1,9 @@
 #include "Board.h"
 
-Board::Board()
+Board::Board(int level, int lives, int points)
+	:m_lives(lives), m_points(points), m_keys(0)
 {
-	this->getLevel(1);
+	this->getLevel(level);
 }
 
 void Board::getLevel(const int level)
@@ -14,32 +15,48 @@ void Board::getLevel(const int level)
 	{
 		exit(EXIT_FAILURE);
 	}
-	this->m_baord.clear();
+	this->m_movingObjects.clear();
+	this->m_staticObjects.clear();
 
-	for (auto line = std::string(); std::getline(lvl, line);)//line == col
+	lvl >> m_rows >> m_cols;
+
+	size_t row = 0;
+	for (auto line = std::string(); std::getline(lvl, line); row++)//line == col
 	{			
-		this->m_baord.push_back(line);
-	}
-}
-
-int Board::getBoardSize() const
-{
-	return this->m_baord.size();
-}
-
-std::vector<std::string> Board::getBoard() const
-{
-	return this->m_baord;
-}
-
-void Board::printLevel() const
-{
-	for (size_t i = 0; i < this->m_baord.size(); i++)
-	{
-		for (size_t j = 0; j < this->m_baord[i].size(); j++)
+		for (size_t col = 0; col < line.size(); col++)
 		{
-			std::cout << this->m_baord[i][j];
+			initVector(line[col], Vertex(row, col));
 		}
-		std::cout << "\n";
 	}
+}
+
+void Board::initVector(char c, Vertex loc)
+{
+	float size = (windowHeight - loc.m_y) / std::max(m_rows, m_cols);
+	if (c != ' ')
+	{
+		switch (c)
+		{
+		case '%': //mouse
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), MouseSpeed, m_lives, m_keys));
+
+			break;
+		case '#': //Wall
+			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
+			break;
+		default:
+			break;
+		}
+	}
+
+}
+
+int Board::getLives() const
+{
+	return this->m_lives;
+}
+
+int Board::getPoints() const
+{
+	return this->m_points;
 }

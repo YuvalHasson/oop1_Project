@@ -4,23 +4,36 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <memory>
+
+#include "Mouse.h"
+#include "Wall.h"
+
 
 class Board
 {
 private:
-	std::vector<std::string> m_baord;
+	
+	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
+	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
+
+	int m_rows, m_cols;
+
+	int m_lives;
+	int m_points;
+	int m_keys;
 
 public:
-	Board();
+	Board(int, int, int);
 	~Board() = default;
 	
 	//init level
 	void getLevel(const int);
+	void initVector(char, Vertex);
 
 	//get
-	int getBoardSize() const;
-	std::vector<std::string> getBoard() const;
+	int getLives() const;
+	int getPoints() const;
 
 	//print
-	void printLevel() const;
 };

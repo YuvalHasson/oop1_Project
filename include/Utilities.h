@@ -1,14 +1,21 @@
 #pragma once
 
 struct Vertex {
-	double m_x;
-	double m_y;
+	float m_x;
+	float m_y;
+};
+
+struct Size {
+	float m_x;
+	float m_y;
 };
 
 const int OBJ_AMOUNT = 10;
 
 #define windowHeight 890
 #define WindowWidth 1020
+
+#define MouseSpeed 150.f
 
 namespace TEXTURE
 {

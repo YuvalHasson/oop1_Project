@@ -11,13 +11,9 @@ private:
 	int m_lives;
 	int m_keys;
 
-
 public:
-	Mouse();
+	Mouse(Vertex, Size, float, int, int);
 	virtual ~Mouse();
-
-	//draw
-	virtual void draw();
 
 	//move
 	virtual void move(MovingObject&);

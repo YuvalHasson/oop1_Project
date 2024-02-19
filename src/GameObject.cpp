@@ -1,8 +1,10 @@
 #include "GameObject.h"
 
-GameObject::GameObject()
-	:m_location(), m_objectRep()
+GameObject::GameObject(Vertex loc, Size size)
+	:m_location(), m_size()
 {
+	this->setLocation(loc);
+	this->setSize(size);
 }
 
 GameObject::~GameObject()
@@ -14,23 +16,18 @@ Vertex GameObject::getLocation() const
 	return m_location;
 }
 
-char GameObject::getChar() const
+Size GameObject::getSize() const
 {
-	return this->m_objectRep;
+	return this->m_size;
 }
 
-void GameObject::draw()
+void GameObject::setLocation(Vertex loc)
 {
+	this->m_location = loc;
 }
 
-void GameObject::setLocation(Vertex v)
+void GameObject::setSize(Size size)
 {
-	this->m_location.m_x = v.m_x;
-	this->m_location.m_y = v.m_y;
-}
-
-void GameObject::setChar(char obj)
-{
-	this->m_objectRep = obj;
+	this->m_size = size;
 }
 

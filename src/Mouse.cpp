@@ -1,21 +1,13 @@
 #include "Mouse.h"
 
-Mouse::Mouse()
-	:m_texture()
+Mouse::Mouse(Vertex loc, Size size, float speed, int lives, int keys)
+	:m_texture(), MovingObject(loc, size, speed), m_lives(lives), m_keys(keys)
 {
-	m_lives = 3;
-	m_keys = 0;
 }
 
 Mouse::~Mouse()
 {
 }
-
-void Mouse::draw()
-{
-	
-}
-
 
 void Mouse::move(MovingObject&)
 {

@@ -6,7 +6,6 @@
 #include "Board.h"
 #include "Mouse.h"
 
-
 class Controller
 {
 private:
@@ -16,9 +15,9 @@ private:
 
 	Board m_board;
 
-	Mouse m_mouse;
-
 	int m_level;
+	int m_points;
+	int m_lives;
 	
 public:
 	Controller();
@@ -26,8 +25,8 @@ public:
 
 	void run();
 
-	void buildVectors();
+	//void buildVectors();
 
-	//set
-	void setObjects(char, Vertex);
+	////set
+	//void setObjects(char, Vertex);
 };

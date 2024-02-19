@@ -7,20 +7,19 @@ class GameObject
 {
 private:
 	Vertex m_location;
-	char m_objectRep;
+	Size m_size;
+	
 public:
-	GameObject();
+	GameObject(Vertex, Size);
 	virtual ~GameObject();
-
-	virtual void draw() = 0;
 
 	//get
 	virtual Vertex getLocation() const;
-	virtual char getChar() const;
+	virtual Size getSize() const;
 	virtual sf::Texture* getTexture() const = 0;
 
 	//set
 	virtual void setLocation(Vertex);
-	virtual void setChar(char);
+	virtual void setSize(Size);
 	virtual void setTexture(sf::Texture*) = 0;
 };

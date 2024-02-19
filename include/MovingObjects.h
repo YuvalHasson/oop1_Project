@@ -5,13 +5,11 @@
 class MovingObject : public GameObject
 {
 private:
-	//TODO: mabye
-public:
-	using GameObject::GameObject; // using same constructor
-	virtual ~MovingObject();
+	float m_speed;
 
-	//draw
-	virtual void draw() = 0;
+public:
+	MovingObject(Vertex, Size, float);
+	virtual ~MovingObject();
 
 	//move
 	virtual void move(MovingObject&) = 0;
