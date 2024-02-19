@@ -10,7 +10,8 @@ struct Size {
 	float m_y;
 };
 
-const int OBJ_AMOUNT = 10;
+const int OBJ_AMOUNT = 7;
+
 
 #define windowHeight 890
 #define WindowWidth 1020

@@ -1,2 +1,10 @@
 ﻿#configure_file ("Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+
+configure_file ("Cat.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Door.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Cheese.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Key.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Mouse.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Present.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
