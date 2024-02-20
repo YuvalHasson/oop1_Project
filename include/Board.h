@@ -6,7 +6,6 @@
 #include <iostream>
 #include <memory>
 
-#include "Resources.h"
 #include "Mouse.h"
 #include "Wall.h"
 

@@ -39,7 +39,7 @@ void Board::getLevel(const int level)
 	{			
 		for (size_t col = 0; col < line.size(); col++)
 		{
-			initVector(line[col], Vertex(row, col));
+			initVector(line[col], Vertex(col, row));
 		}
 	}
 }
@@ -53,12 +53,12 @@ void Board::initVector(char c, Vertex loc)
 		switch (c)
 		{
 		case '%': //mouse
-			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), MouseSpeed, m_lives, m_keys));
-			this->m_movingObjects.back()->setSprite(Rescources::getResource().getTexture(TEXTURE::mouse));
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, m_keys));
+			//this->m_movingObjects.back()->setTexture(Rescources::getResource().getTexture(TEXTURE::mouse));
 			break;
 		case '#': //Wall
 			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
-			this->m_staticObjects.back()->setSprite(Rescources::getResource().getTexture(TEXTURE::wall));
+			//this->m_staticObjects.back()->setTexture(Rescources::getResource().getTexture(TEXTURE::wall));
 			break;
 		default:
 			break;

@@ -1,7 +1,7 @@
 #include "MovingObjects.h"
 
-MovingObject::MovingObject(Vertex loc, Size size, float speed)
-	:m_speed(speed) , GameObject(loc, size)
+MovingObject::MovingObject(Vertex loc, Size size)
+	:GameObject(loc, size)
 {
 }
 

@@ -5,11 +5,10 @@
 class MovingObject : public GameObject
 {
 private:
-	float m_speed;
 	sf::Vector2f m_direction = sf::Vector2f(0, 0);
 
 public:
-	MovingObject(Vertex, Size, float);
+	MovingObject(Vertex, Size);
 	virtual ~MovingObject();
 
 	//move
@@ -23,11 +22,7 @@ public:
 	virtual void resetDirection();
 
 	//get
-	virtual sf::Texture* getTexture() const = 0;
-	virtual sf::Sprite getSprite() const = 0;
 	virtual sf::Vector2f getDirection() const;
 
 	//set
-	virtual void setSprite(sf::Texture*) = 0;
-
 };
