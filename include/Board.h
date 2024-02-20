@@ -8,6 +8,11 @@
 
 #include "Mouse.h"
 #include "Wall.h"
+#include "Cheese.h"
+#include "Door.h"
+#include "Key.h"
+#include "Present.h"
+#include "Cat.h"
 
 
 class Board

@@ -54,11 +54,24 @@ void Board::initVector(char c, Vertex loc)
 		{
 		case '%': //mouse
 			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, m_keys));
-			//this->m_movingObjects.back()->setTexture(Rescources::getResource().getTexture(TEXTURE::mouse));
+			break;
+		case '^': //Cat
+			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size, size)));
 			break;
 		case '#': //Wall
 			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
-			//this->m_staticObjects.back()->setTexture(Rescources::getResource().getTexture(TEXTURE::wall));
+			break;
+		case '*': //Cheese
+			this->m_staticObjects.push_back(std::make_unique<Cheese>(loc, Size(size, size)));
+			break;
+		case 'D': //Door
+			this->m_staticObjects.push_back(std::make_unique<Door>(loc, Size(size, size)));
+			break;
+		case 'F': //Key
+			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size, size)));
+			break;
+		case '$': //Present
+			this->m_staticObjects.push_back(std::make_unique<Present>(loc, Size(size, size)));
 			break;
 		default:
 			break;
