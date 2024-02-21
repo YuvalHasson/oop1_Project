@@ -53,10 +53,10 @@ void Board::initVector(char c, Vertex loc)
 		switch (c)
 		{
 		case '%': //mouse
-			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, m_keys));
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, m_keys, MouseSpeed));
 			break;
 		case '^': //Cat
-			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size, size)));
+			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size, size), CatSpeed));
 			break;
 		case '#': //Wall
 			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
@@ -86,6 +86,21 @@ void Board::initClock()
 	for (size_t i = 0; i < this->m_movingObjects.size(); i++)
 	{
 		this->m_movingObjects[i]->move(deltaTime);
+
+		for (size_t j = 0; j < this->m_movingObjects.size(); j++)
+		{
+			if (this->m_movingObjects[i]->collidesWith(*this->m_movingObjects[j])) {
+				this->m_movingObjects[i]->handleCollision(*this->m_movingObjects[j]);
+			}
+		}
+
+		for (size_t j = 0; j < this->m_staticObjects.size(); j++)
+		{
+			if (this->m_movingObjects[i]->collidesWith(*this->m_staticObjects[j])) {
+				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
+				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
+			}
+		}
 	}
 }
 

@@ -6,9 +6,12 @@ class MovingObject : public GameObject
 {
 private:
 	sf::Vector2f m_direction = sf::Vector2f(0, 0);
+	float m_speed;
+
+	sf::Vector2f m_lastLocation;
 
 public:
-	MovingObject(Vertex, Size);
+	MovingObject(Vertex, Size, int);
 	virtual ~MovingObject();
 
 	//move
@@ -23,6 +26,18 @@ public:
 
 	//get
 	virtual sf::Vector2f getDirection() const;
+	virtual float getSpeed() const;
+	virtual sf::Vector2f getLastLocation() const;
 
 	//set
+	virtual void setLastLocation(sf::Vector2f);
+
+	virtual void handleCollision(GameObject&) {};
+	virtual void handleCollision(Wall&) {};
+	virtual void handleCollision(Mouse&) {};
+	virtual void handleCollision(Cat&) {};
+	virtual void handleCollision(Cheese&) {};
+	virtual void handleCollision(Door&) {};
+	virtual void handleCollision(Key&) {};
+	virtual void handleCollision(Present&) {};
 };

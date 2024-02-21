@@ -9,3 +9,8 @@ Door::Door(Vertex loc, Size size)
 Door::~Door()
 {
 }
+
+void Door::handleCollision(GameObject& other)
+{
+	return other.handleCollision(*this);
+}

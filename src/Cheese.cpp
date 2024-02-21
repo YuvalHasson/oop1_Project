@@ -9,3 +9,8 @@ Cheese::Cheese(Vertex loc, Size size)
 Cheese::~Cheese()
 {
 }
+
+void Cheese::handleCollision(GameObject& other)
+{
+	return other.handleCollision(*this);
+}

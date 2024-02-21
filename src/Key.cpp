@@ -9,3 +9,8 @@ Key::Key(Vertex loc, Size size)
 Key::~Key()
 {
 }
+
+void Key::handleCollision(GameObject& other)
+{
+	return other.handleCollision(*this);
+}

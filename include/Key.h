@@ -4,10 +4,12 @@
 
 class Key : public StaticObjects
 {
+private:
+
 public:
 	Key(Vertex, Size);
 	virtual ~Key();
 
-private:
+	virtual void handleCollision(GameObject&);
 
 };

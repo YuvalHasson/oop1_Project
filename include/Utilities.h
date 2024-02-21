@@ -17,6 +17,7 @@ const int OBJ_AMOUNT = 7;
 #define WindowWidth 1020
 
 #define MouseSpeed 150.f
+#define CatSpeed 100.f
 
 namespace TEXTURE
 {

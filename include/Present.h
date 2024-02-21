@@ -4,10 +4,12 @@
 
 class Present : public StaticObjects
 {
+private:
+
 public:
 	Present(Vertex, Size);
 	virtual ~Present();
 
-private:
+	virtual void handleCollision(GameObject&);
 
 };

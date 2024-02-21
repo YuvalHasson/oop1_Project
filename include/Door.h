@@ -4,10 +4,12 @@
 
 class Door : public StaticObjects
 {
+private:
+
 public:
 	Door(Vertex, Size);
 	virtual ~Door();
 
-private:
+	virtual void handleCollision(GameObject&);
 
 };

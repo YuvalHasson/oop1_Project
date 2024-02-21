@@ -4,10 +4,12 @@
 
 class Cheese : public StaticObjects
 {
+private:
+
 public:
 	Cheese(Vertex, Size);
 	virtual ~Cheese();
 
-private:
+	virtual void handleCollision(GameObject&);
 
 };
