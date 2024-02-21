@@ -46,32 +46,34 @@ void Board::getLevel(const int level)
 
 void Board::initVector(char c, Vertex loc)
 {
-	float size = (windowHeight - loc.m_y) / std::max(m_rows, m_cols);
+	float size_y = (windowHeight - loc.m_y) / std::max(m_rows, m_cols);
+	float size_x = (windowHeight - loc.m_x) / std::max(m_rows, m_cols);
+
+
 	if (c != ' ')
 	{
-		
 		switch (c)
 		{
 		case '%': //mouse
-			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, m_keys, MouseSpeed));
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size_x, size_y), m_lives, m_keys, MouseSpeed));
 			break;
 		case '^': //Cat
-			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size, size), CatSpeed));
+			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size_x, size_y), CatSpeed));
 			break;
 		case '#': //Wall
-			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
+			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size_x, size_y)));
 			break;
 		case '*': //Cheese
-			this->m_staticObjects.push_back(std::make_unique<Cheese>(loc, Size(size, size)));
+			this->m_staticObjects.push_back(std::make_unique<Cheese>(loc, Size(size_x, size_y)));
 			break;
 		case 'D': //Door
-			this->m_staticObjects.push_back(std::make_unique<Door>(loc, Size(size, size)));
+			this->m_staticObjects.push_back(std::make_unique<Door>(loc, Size(size_x, size_y)));
 			break;
 		case 'F': //Key
-			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size, size)));
+			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size_x, size_y)));
 			break;
 		case '$': //Present
-			this->m_staticObjects.push_back(std::make_unique<Present>(loc, Size(size, size)));
+			this->m_staticObjects.push_back(std::make_unique<Present>(loc, Size(size_x, size_y)));
 			break;
 		default:
 			break;
@@ -99,8 +101,10 @@ void Board::initClock()
 			if (this->m_movingObjects[i]->collidesWith(*this->m_staticObjects[j])) {
 				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
+
 			}
 		}
+		std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	}
 }
 

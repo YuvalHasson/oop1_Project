@@ -12,7 +12,6 @@ private:
 
 public:
 	MovingObject(Vertex, Size, int);
-	virtual ~MovingObject();
 
 	//move
 	virtual void move(sf::Time) = 0;

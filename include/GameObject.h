@@ -24,7 +24,7 @@ private:
 	
 public:
 	GameObject(Vertex, Size);
-	virtual ~GameObject();
+	virtual ~GameObject() = default;
 
 	//get
 	virtual sf::Vector2f getLocation() const;

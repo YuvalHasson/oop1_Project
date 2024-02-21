@@ -6,10 +6,6 @@ Door::Door(Vertex loc, Size size)
 	this->setSprite(TEXTURE::door);
 }
 
-Door::~Door()
-{
-}
-
 void Door::handleCollision(GameObject& other)
 {
 	return other.handleCollision(*this);

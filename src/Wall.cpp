@@ -6,10 +6,6 @@ Wall::Wall(Vertex loc, Size size)
 	this->setSprite(TEXTURE::wall);
 }
 
-Wall::~Wall()
-{
-}
-
 void Wall::handleCollision(GameObject& other)
 {
 	return other.handleCollision(*this);

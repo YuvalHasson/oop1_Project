@@ -5,10 +5,6 @@ MovingObject::MovingObject(Vertex loc, Size size, int speed)
 {
 }
 
-MovingObject::~MovingObject()
-{
-}
-
 void MovingObject::directionUp()
 {
 	this->m_direction = sf::Vector2f(0, -1);

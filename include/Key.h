@@ -5,6 +5,7 @@
 class Key : public StaticObjects
 {
 private:
+	static int m_keys;
 
 public:
 	Key(Vertex, Size);
@@ -12,4 +13,7 @@ public:
 
 	virtual void handleCollision(GameObject&);
 
+	virtual void handleCollision(Mouse&);
+
+	static int getKeys();
 };

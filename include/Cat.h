@@ -8,7 +8,6 @@ private:
 
 public:
 	Cat(Vertex, Size, int);
-	virtual ~Cat();
 	
 	//move
 	virtual void move(sf::Time);

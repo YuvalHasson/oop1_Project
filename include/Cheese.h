@@ -8,7 +8,6 @@ private:
 
 public:
 	Cheese(Vertex, Size);
-	virtual ~Cheese();
 
 	virtual void handleCollision(GameObject&);
 

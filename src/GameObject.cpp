@@ -7,10 +7,6 @@ GameObject::GameObject(Vertex loc, Size size)
 	this->setSize(size);
 }
 
-GameObject::~GameObject()
-{
-}
-
 sf::Vector2f GameObject::getLocation() const
 {
 	return m_location;
@@ -51,8 +47,8 @@ void GameObject::setSprite(int obj)
 	this->m_texture = Rescources::getResource().getTexture(obj);
 	this->m_sprite.setTexture(*(this->m_texture));
 	this->m_sprite.setScale(s, s);
-	this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * x, this->getSize().m_x * y));
-
+	this->m_sprite.setOrigin(sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u));
+	this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1), this->getSize().m_x * (y + 1)));
 	
 }
 

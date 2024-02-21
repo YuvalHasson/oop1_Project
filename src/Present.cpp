@@ -6,10 +6,6 @@ Present::Present(Vertex loc, Size size)
 	this->setSprite(TEXTURE::present);
 }
 
-Present::~Present()
-{
-}
-
 void Present::handleCollision(GameObject& other)
 {
 	return other.handleCollision(*this);

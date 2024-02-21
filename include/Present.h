@@ -8,7 +8,6 @@ private:
 
 public:
 	Present(Vertex, Size);
-	virtual ~Present();
 
 	virtual void handleCollision(GameObject&);
 

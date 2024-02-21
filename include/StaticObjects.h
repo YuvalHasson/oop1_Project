@@ -5,10 +5,12 @@
 class StaticObjects : public GameObject
 {
 private:
-
+	bool m_isEaten;
 public:
 	StaticObjects(Vertex, Size);
-	virtual ~StaticObjects();
+
+	bool isEaten() const;
+	void Eaten();
 
 	virtual void handleCollision(GameObject&) {};
 	virtual void handleCollision(Wall&) {};

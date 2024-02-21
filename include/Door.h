@@ -8,7 +8,6 @@ private:
 
 public:
 	Door(Vertex, Size);
-	virtual ~Door();
 
 	virtual void handleCollision(GameObject&);
 

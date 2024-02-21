@@ -10,7 +10,6 @@ private:
 
 public:
 	Mouse(Vertex, Size, int, int, int);
-	virtual ~Mouse();
 
 	//move
 	virtual void move(sf::Time);

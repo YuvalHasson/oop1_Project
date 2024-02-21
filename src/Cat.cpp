@@ -6,10 +6,6 @@ Cat::Cat(Vertex loc, Size size, int speed)
 	this->setSprite(TEXTURE::cat);
 }
 
-Cat::~Cat()
-{
-}
-
 void Cat::move(sf::Time deltaTime)
 {
 	this->getSprite().move(this->getDirection() * this->getSpeed() * deltaTime.asSeconds());
