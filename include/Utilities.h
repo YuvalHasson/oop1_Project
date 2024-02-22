@@ -10,7 +10,7 @@ struct Size {
 	float m_y;
 };
 
-const int OBJ_AMOUNT = 7;
+const int OBJ_AMOUNT = 10;
 
 
 #define windowHeight 890
@@ -28,4 +28,7 @@ namespace TEXTURE
 	constexpr int key = 4;
 	constexpr int present = 5;
 	constexpr int wall = 6;
+	constexpr int background = 7;
+	constexpr int menu = 8;
+	constexpr int button = 9;
 }

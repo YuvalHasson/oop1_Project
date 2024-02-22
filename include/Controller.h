@@ -24,6 +24,6 @@ public:
 	~Controller();
 
 	void run();
-
+	sf::Sprite initBackground();
 
 };

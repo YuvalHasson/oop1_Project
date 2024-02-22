@@ -16,9 +16,8 @@ void Controller::run()
 	
 	while (this->m_window.isOpen())
 	{
-
-
 		this->m_window.clear(sf::Color(221, 221, 221));
+		this->m_window.draw(initBackground());
 
 		for (auto event = sf::Event{}; this->m_window.pollEvent(event);)
 		{
@@ -37,5 +36,12 @@ void Controller::run()
 
 		this->m_window.display();
 	}
+}
+
+sf::Sprite Controller::initBackground()
+{
+	sf::Sprite background;
+	background.setTexture(*Rescources::getResource().getTexture(TEXTURE::background));
+	return background;
 }
 
