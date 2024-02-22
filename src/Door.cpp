@@ -10,3 +10,11 @@ void Door::handleCollision(GameObject& other)
 {
 	return other.handleCollision(*this);
 }
+
+void Door::handleCollision(Mouse& other)
+{
+	if (other.getKeys() > 0)
+	{
+		this->Eaten();
+	}
+}

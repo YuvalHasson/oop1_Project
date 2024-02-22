@@ -3,8 +3,7 @@
 Board::Board(int level, int lives, int points)
 	:m_lives(lives), m_points(points), m_keys(0)
 {
-	this->getLevel(level);
-	
+	this->getLevel(level);	
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -39,16 +38,15 @@ void Board::getLevel(const int level)
 	{			
 		for (size_t col = 0; col < line.size(); col++)
 		{
-			initVector(line[col], Vertex(col, row));
+			initVector(line[col], Vertex((float)col, (float)row));
 		}
 	}
 }
 
 void Board::initVector(char c, Vertex loc)
 {
-	float size_y = (windowHeight - loc.m_y) / std::max(m_rows, m_cols);
 	float size_x = (windowHeight - loc.m_x) / std::max(m_rows, m_cols);
-
+	float size_y = (WindowWidth - loc.m_y) / std::max(m_rows, m_cols);
 
 	if (c != ' ')
 	{
@@ -104,8 +102,8 @@ void Board::initClock()
 
 			}
 		}
-		std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	}
+	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 }
 
 int Board::getLives() const

@@ -15,4 +15,6 @@ public:
 	virtual void handleCollision(GameObject&) override;
 
 	virtual void handleCollision(Mouse&) override {};
+	virtual void handleCollision(Wall&) override;
+	virtual void handleCollision(Door&) override;
 };

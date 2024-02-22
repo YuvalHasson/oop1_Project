@@ -12,7 +12,6 @@ public:
 	virtual ~Key();
 
 	virtual void handleCollision(GameObject&);
-
 	virtual void handleCollision(Mouse&);
 
 	static int getKeys();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MovingObjects.h"
+#include "Wall.h"
 
 class Mouse : public MovingObject
 {
@@ -22,4 +23,6 @@ public:
 	virtual void handleCollision(Key&) override;
 	virtual void handleCollision(Door&) override;
 	virtual void handleCollision(Present&) override;
+
+	int getKeys() const;
 };

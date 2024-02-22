@@ -39,7 +39,7 @@ void GameObject::setSize(Size size)
 
 void GameObject::setSprite(int obj)
 {
-	float s = this->getSize().m_x / 380;
+	float s = this->getSize().m_x / 380.f;
 	float x = this->getLocation().x;
 	float y = this->getLocation().y;
 	//std::cout << x << " " << y;
@@ -48,11 +48,16 @@ void GameObject::setSprite(int obj)
 	this->m_sprite.setTexture(*(this->m_texture));
 	this->m_sprite.setScale(s, s);
 	this->m_sprite.setOrigin(sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u));
-	this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1), this->getSize().m_x * (y + 1)));
+	this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1.f), this->getSize().m_y * (y + 1.f)));
 	
 }
 
 bool GameObject::collidesWith(const GameObject& obj)
 {
-	return this->m_sprite.getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds());
+
+	auto a = sf::FloatRect(this->m_sprite.getGlobalBounds().left, this->m_sprite.getGlobalBounds().top,
+		this->m_sprite.getGlobalBounds().width - 12.f, this->m_sprite.getGlobalBounds().height - 12.f);
+	
+	/*return this->m_sprite.getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds(), a);*/
+	return a.intersects(obj.m_sprite.getGlobalBounds());
 }
