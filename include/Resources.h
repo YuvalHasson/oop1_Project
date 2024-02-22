@@ -22,5 +22,5 @@ public:
 
 	//get
 	sf::Texture* getTexture(int);
-	sf::Font getFont() const;
+	sf::Font* getFont();
 };

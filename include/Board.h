@@ -6,6 +6,8 @@
 #include <iostream>
 #include <memory>
 
+#include "GameStatus.h"
+
 #include "Mouse.h"
 #include "Wall.h"
 #include "Cheese.h"
@@ -26,6 +28,8 @@ private:
 
 	int m_rows, m_cols;
 
+	GameStatus m_status;
+
 	int m_lives;
 	int m_points;
 	int m_keys;
@@ -42,6 +46,6 @@ public:
 	void initClock();
 
 	//get
-	int getLives() const;
-	int getPoints() const;
+	//int getLives() const;
+	//int getPoints() const;
 };

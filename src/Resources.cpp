@@ -19,9 +19,9 @@ Rescources& Rescources::getResource()
 	return resource;
 }
 
-sf::Font Rescources::getFont() const
+sf::Font* Rescources::getFont()
 {
-	return this->m_font;
+	return &m_font;
 }
 
 sf::Texture* Rescources::getTexture(int obj)

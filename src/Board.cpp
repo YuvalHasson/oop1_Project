@@ -8,6 +8,7 @@ Board::Board(int level, int lives, int points)
 
 void Board::draw(sf::RenderWindow* window)
 {
+	m_status.draw(window);
 	for (size_t i = 0; i < this->m_staticObjects.size(); i++)
 	{
 		window->draw(this->m_staticObjects[i]->getSprite());
@@ -106,12 +107,12 @@ void Board::initClock()
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 }
 
-int Board::getLives() const
-{
-	return this->m_lives;
-}
-
-int Board::getPoints() const
-{
-	return this->m_points;
-}
+//int Board::getLives() const
+//{
+//	return this->m_status.getLives();
+//}
+//
+//int Board::getPoints() const
+//{
+//	return this->m_status.getPoints();
+//}

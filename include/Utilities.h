@@ -16,6 +16,9 @@ const int OBJ_AMOUNT = 10;
 #define windowHeight 890
 #define WindowWidth 950
 
+#define statusBarHeight 60
+#define statusBarWidth 950
+
 #define MouseSpeed 150.f
 #define CatSpeed 100.f
 
