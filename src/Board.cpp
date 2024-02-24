@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <typeinfo>
 
 Board::Board(int level, int lives, int points)
 	:m_lives(lives), m_points(points), m_keys(0)
@@ -90,29 +91,45 @@ void Board::initClock()
 
 		for (size_t j = 0; j < this->m_movingObjects.size(); j++)
 		{
-			if (this->m_movingObjects[i]->collidesWith(*this->m_movingObjects[j])) {
+			if (this->m_movingObjects[i]->collidesWith(*this->m_movingObjects[j]))
+			{
 				this->m_movingObjects[i]->handleCollision(*this->m_movingObjects[j]);
 			}
 		}
 
 		for (size_t j = 0; j < this->m_staticObjects.size(); j++)
 		{
-			if (this->m_movingObjects[i]->collidesWith(*this->m_staticObjects[j])) {
+			if (this->m_movingObjects[i]->collidesWith(*this->m_staticObjects[j]))
+			{
 				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
 
 			}
 		}
+		this->updateStatus(this->m_movingObjects[i].get());
+		
 	}
+	this->m_cheese = Cheese::getCheese();
+
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
+	
+	this->m_cheese = this->m_cheese - 1;
 }
 
-//int Board::getLives() const
-//{
-//	return this->m_status.getLives();
-//}
-//
-//int Board::getPoints() const
-//{
-//	return this->m_status.getPoints();
-//}
+void Board::updateStatus(MovingObject* ptr)
+{
+	Mouse* mouse = dynamic_cast<Mouse*>(ptr);
+	if (mouse)
+	{
+		this->m_keys = mouse->getKeys();
+		this->m_lives = mouse->getLives();
+		if (this->m_cheese == Cheese::getCheese())
+		{
+			this->m_points += 5;
+		}
+	}
+	this->m_status.setLives(this->m_lives);
+	this->m_status.setKeys(this->m_keys);
+	this->m_status.setPoints(this->m_points);
+}
+

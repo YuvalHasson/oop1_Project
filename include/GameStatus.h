@@ -19,14 +19,9 @@ public:
 	void draw(sf::RenderWindow* window);
 
 	//set
-	/*void setLives(int);
+	void setLives(int);
 	void setKeys(int);
 	void setPoints(int);
-	void setGameLevel(int);*/
+	//void setGameLevel(int);
 
-	//get
-	//int getLives() const;
-	//int getKeys() const;
-	//int getPoints() const;
-	//int getGameLevel() const;
 };

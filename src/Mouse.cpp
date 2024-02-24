@@ -68,32 +68,10 @@ void Mouse::handleCollision(Cheese&)
 	std::cout << "c" << std::endl;
 }
 
-void Mouse::handleCollision(Wall& wall)
+void Mouse::handleCollision(Wall&)
 {
 	this->setLocation(this->getLastLocation());
 	this->getSprite().setPosition(this->getLastLocation());
-
-	//std::cout << "m Loc: " << this->getSprite().getPosition().x << " " << this->getSprite().getPosition().y << std::endl;
-	//std::cout << "wall loc: " << wall.getSprite().getPosition().x << " " << wall.getSprite().getPosition().y << std::endl;
-	//
-	//auto a = (wall.getSize().m_x / 380) / 4; // the size of paremeter that we wnat to hendell collitions
-	//auto b = sqrt((a * a) + (a * a));
-
-	//auto x_mouse = this->getSprite().getGlobalBounds().left;
-	//auto x_wall = wall.getSprite().getGlobalBounds().left + wall.getSprite().getGlobalBounds().width;
-	//auto moveIn = x_wall - x_mouse;
-
-	//if (moveIn <=0 || moveIn <= a) // mouse_right x <= wall_left x
-	//{
-	//	std::cout << " in here " << std::endl;
-	//	this->getSprite().setPosition(this->getSprite().getPosition().x , this->getSprite().getPosition().y + moveIn);
-	//}
-	//if (this->getSprite().getPosition().x - wall.getSprite().getPosition().x >= a) // mouse x >= wall x
-	//{
-	//	std::cout << " in here " << wall.getSprite().getGlobalBounds().left << std::endl;
-	//	
-	//	//this->getSprite().setPosition(this->getSprite().getPosition().x, this->getSprite().getPosition().y - 10.f);
-	//}
 }
 
 void Mouse::handleCollision(Key& key)
@@ -125,4 +103,9 @@ void Mouse::handleCollision(Present&)
 int Mouse::getKeys() const
 {
 	return this->m_keys;
+}
+
+int Mouse::getLives() const
+{
+	return this->m_lives;
 }

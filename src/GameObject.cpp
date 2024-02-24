@@ -56,7 +56,7 @@ bool GameObject::collidesWith(const GameObject& obj)
 {
 
 	auto a = sf::FloatRect(this->m_sprite.getGlobalBounds().left, this->m_sprite.getGlobalBounds().top,
-		this->m_sprite.getGlobalBounds().width - 12.f, this->m_sprite.getGlobalBounds().height - 12.f);
+		this->m_sprite.getGlobalBounds().width - 10.f, this->m_sprite.getGlobalBounds().height - 10.f);
 	
 	/*return this->m_sprite.getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds(), a);*/
 	return a.intersects(obj.m_sprite.getGlobalBounds());

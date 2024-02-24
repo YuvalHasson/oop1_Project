@@ -33,6 +33,7 @@ private:
 	int m_lives;
 	int m_points;
 	int m_keys;
+	int m_cheese;
 
 public:
 	Board(int, int, int);
@@ -45,7 +46,6 @@ public:
 	void initVector(char, Vertex);
 	void initClock();
 
-	//get
-	//int getLives() const;
-	//int getPoints() const;
+	
+	void updateStatus(MovingObject*);
 };

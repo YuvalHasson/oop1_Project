@@ -25,4 +25,5 @@ public:
 	virtual void handleCollision(Present&) override;
 
 	int getKeys() const;
+	int getLives() const;
 };
