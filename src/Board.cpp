@@ -125,6 +125,7 @@ void Board::updateStatus(MovingObject* ptr)
 	{
 		this->m_status.setKeys(mouse->getKeys());
 		this->m_lives = mouse->getLives();
+
 		if (this->m_cheese == Cheese::getCheese())
 		{
 			this->m_points += 5;

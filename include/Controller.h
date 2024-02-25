@@ -28,6 +28,11 @@ public:
 	~Controller();
 
 	void run();
+	void pollEvent();
+	void updateLevel();
+	void menu();
+
+	//init
 	sf::Sprite initBackground();
 
 };

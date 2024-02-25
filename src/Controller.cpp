@@ -15,55 +15,86 @@ void Controller::run()
 {
 	while (this->m_window.isOpen())
 	{
-		this->m_window.clear(sf::Color(221, 221, 221));
-		this->m_window.draw(initBackground());
-		m_mainMenu.drawMainMenu(&m_window);
-
-		for (auto event = sf::Event{}; this->m_window.pollEvent(event);)
-		{
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				this->m_window.close();
-				break;
-			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					if (this->m_gameState == GAME_STATE::HELP)
-					{
-						this->m_gameState = GAME_STATE::MAIN_MENU;
-					}
-					else
-					{
-						this->m_window.close();
-					}
-				}
-				break;
-			case sf::Event::MouseButtonReleased:
-				if (this->m_gameState == GAME_STATE::MAIN_MENU)
-				{
-					this->m_gameState = m_mainMenu.buttonPressed(&m_window, event.mouseButton);
-					
-					if (this->m_gameState == GAME_STATE::EXIT)
-					{
-						this->m_window.close();
-					}
-					else if (this->m_gameState == GAME_STATE::NEW_GAME)
-					{
-						//TODO:: insert music
-					}
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		//draw
-		//m_board.draw(&m_window);
-		//m_board.initClock();
-
-		this->m_window.display();
+		this->updateLevel();
+		this->menu();
 	}
+}
+
+void Controller::pollEvent()
+{
+	this->m_window.clear();
+
+	for (auto event = sf::Event{}; this->m_window.pollEvent(event);)
+	{
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			this->m_window.close();
+			break;
+		case sf::Event::KeyPressed:
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				if (this->m_gameState == GAME_STATE::HELP)
+				{
+					this->m_gameState = GAME_STATE::MAIN_MENU;
+				}
+				else
+				{
+					this->m_window.close();
+				}
+			}
+			break;
+		case sf::Event::MouseButtonReleased:
+			if (this->m_gameState == GAME_STATE::MAIN_MENU)
+			{
+				this->m_gameState = m_mainMenu.buttonPressed(&m_window, event.mouseButton);
+
+				if (this->m_gameState == GAME_STATE::EXIT)
+				{
+					this->m_window.close();
+				}
+				else if (this->m_gameState == GAME_STATE::NEW_GAME)
+				{
+					//TODO:: insert music
+				}
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void Controller::updateLevel()
+{
+	this->pollEvent();
+	if (this->m_gameState == GAME_STATE::NEW_GAME)
+	{
+		//TODO: check cheese amount
+		//this->m_board.getLevel(this->m_level);
+	}
+}
+
+void Controller::menu()
+{
+	switch (this->m_gameState)
+	{
+	case GAME_STATE::MAIN_MENU:
+		this->m_mainMenu.drawMainMenu(&this->m_window);
+		break;
+	case GAME_STATE::HELP:
+		this->m_mainMenu.drawHelp(&this->m_window);
+		break;
+	case GAME_STATE::NEW_GAME:
+		this->m_window.draw(initBackground());
+		this->m_board.draw(&m_window);
+		this->m_board.initClock();
+		break;
+	default:
+		break;
+	}
+
+	this->m_window.display();
 }
 
 sf::Sprite Controller::initBackground()
