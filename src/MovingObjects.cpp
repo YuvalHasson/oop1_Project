@@ -1,6 +1,7 @@
 #include "MovingObjects.h"
 
 sf::Vector2f MovingObject::m_mouseLocation = sf::Vector2f(0, 0);
+bool MovingObject::m_isResetLocation = false;
 
 MovingObject::MovingObject(Vertex loc, Size size, int speed)
 	:GameObject(loc, size), m_speed(speed), m_lastLocation()
@@ -47,9 +48,19 @@ sf::Vector2f MovingObject::getLastLocation() const
 	return this->m_lastLocation;
 }
 
-sf::Vector2f MovingObject::getMouseLocation()
+sf::Vector2f MovingObject::getMouseLocation() const
 {
-	return m_mouseLocation;
+	return this->m_mouseLocation;
+}
+
+sf::Vector2f MovingObject::getStaterLocation() const
+{
+	return this->m_startingLocation;
+}
+
+bool MovingObject::isResetLocation()
+{
+	return m_isResetLocation;
 }
 
 void MovingObject::setLastLocation(sf::Vector2f loc)
@@ -60,4 +71,25 @@ void MovingObject::setLastLocation(sf::Vector2f loc)
 void MovingObject::setMouseLocation(sf::Vector2f loc)
 {
 	this->m_mouseLocation = loc;
+}
+
+void MovingObject::setStarterLocation(sf::Vector2f loc)
+{
+	this->m_startingLocation = loc;
+}
+
+void MovingObject::resetLocation()
+{
+	m_isResetLocation = false;
+}
+
+void MovingObject::setResetLocation()
+{
+	m_isResetLocation = true;
+}
+
+void MovingObject::setInitialLocation()
+{
+	this->setLocation(this->getStaterLocation());
+	this->getSprite().setPosition(this->getLocation());
 }

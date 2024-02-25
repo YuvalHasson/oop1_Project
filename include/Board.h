@@ -48,4 +48,5 @@ public:
 
 	
 	void updateStatus(MovingObject*);
+	void resetLocations();
 };

@@ -10,7 +10,7 @@ private:
 	std::string m_imgName[OBJ_AMOUNT] = {
 		"Mouse.png", "Cat.png", "Cheese.png",
 		"Door.png", "Key.png", "Present.png", "Wall.png",
-		"Background.png", "Menu.png", "Button.png"
+		"Background.png", "Menu.png", "Button.png", "Help.png"
 	};
 	sf::Texture m_texture[OBJ_AMOUNT];
 	sf::Font m_font;

@@ -6,6 +6,7 @@ Mouse::Mouse(Vertex loc, Size size, int lives, int speed)
 {
 	this->setSprite(TEXTURE::mouse);
 	this->setLocation(this->getSprite().getPosition());
+	this->setStarterLocation(this->getLocation());
 }
 
 void Mouse::move(sf::Time deltaTime)
@@ -14,33 +15,30 @@ void Mouse::move(sf::Time deltaTime)
 	//std::cout << this->getLastLocation().x << " " << this->getLastLocation().y << std::endl;
 
 	auto s = this->getSize().m_x / 380;
-	auto origin = sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u);
+
+	this->getSprite().setOrigin(sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u));
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		this->directionUp();
-		this->getSprite().setOrigin(origin);
 		this->getSprite().setRotation(90.f);
 		this->getSprite().setScale(-s, s);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		this->directionDown();
-		this->getSprite().setOrigin(origin);
 		this->getSprite().setRotation(270.f);
 		this->getSprite().setScale(-s, -s);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		this->directionRight();
-		this->getSprite().setOrigin(origin);
 		this->getSprite().setRotation(0.f);
 		this->getSprite().setScale(s, s);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		this->directionLeft();
-		this->getSprite().setOrigin(origin);
 		this->getSprite().setRotation(180.f);
 		this->getSprite().setScale(s, -s);
 	}
@@ -56,11 +54,12 @@ void Mouse::move(sf::Time deltaTime)
 void Mouse::handleCollision(GameObject& other)
 {
 	return other.handleCollision(*this);
-	std::cout << "me?" << std::endl;
 }
 
 void Mouse::handleCollision(Cat&)
 {
+	--this->m_lives;
+	this->setResetLocation();
 	std::cout << "cat" << std::endl;
 }
 

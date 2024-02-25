@@ -17,6 +17,7 @@ void Controller::run()
 	{
 		this->m_window.clear(sf::Color(221, 221, 221));
 		this->m_window.draw(initBackground());
+		m_mainMenu.drawMainMenu(&m_window);
 
 		for (auto event = sf::Event{}; this->m_window.pollEvent(event);)
 		{
@@ -28,10 +29,15 @@ void Controller::run()
 			default:
 				break;
 			}
+			int num = m_mainMenu.buttonPressed(&m_window, event.mouseButton);
+			if (num == 2)
+			{
+				m_mainMenu.drawHelp(&m_window);
+			}
 		}
 		//draw
-		m_board.draw(&m_window);
-		m_board.initClock();
+		//m_board.draw(&m_window);
+		//m_board.initClock();
 
 		this->m_window.display();
 	}

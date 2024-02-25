@@ -10,8 +10,9 @@ struct Size {
 	float m_y;
 };
 
-const int OBJ_AMOUNT = 10;
+const int OBJ_AMOUNT = 11;
 
+enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
 
 #define windowHeight 890
 #define WindowWidth 950
@@ -34,4 +35,6 @@ namespace TEXTURE
 	constexpr int background = 7;
 	constexpr int menu = 8;
 	constexpr int button = 9;
+	constexpr int help = 10;
+
 }

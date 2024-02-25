@@ -8,8 +8,10 @@ private:
 	sf::Vector2f m_direction = sf::Vector2f(0, 0);
 	float m_speed;
 
+	sf::Vector2f m_startingLocation;
 	sf::Vector2f m_lastLocation;
 	static sf::Vector2f m_mouseLocation;
+	static bool m_isResetLocation;
 
 public:
 	MovingObject(Vertex, Size, int);
@@ -28,11 +30,17 @@ public:
 	virtual sf::Vector2f getDirection() const;
 	virtual float getSpeed() const;
 	virtual sf::Vector2f getLastLocation() const;
-	virtual sf::Vector2f getMouseLocation();
+	virtual sf::Vector2f getMouseLocation() const;
+	virtual sf::Vector2f getStaterLocation() const;
+	static bool isResetLocation();
 
 	//set
 	virtual void setLastLocation(sf::Vector2f);
 	virtual void setMouseLocation(sf::Vector2f);
+	virtual void setStarterLocation(sf::Vector2f);
+	static void resetLocation();
+	virtual void setResetLocation();
+	virtual void setInitialLocation();
 
 	virtual void handleCollision(GameObject&) {};
 	virtual void handleCollision(Wall&) {};

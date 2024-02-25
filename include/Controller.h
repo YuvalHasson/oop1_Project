@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Utilities.h"
+#include "MainMenu.h"
 #include "Board.h"
 #include "Mouse.h"
 
@@ -14,6 +15,7 @@ private:
 	sf::Texture m_texture[OBJ_AMOUNT];
 
 	Board m_board;
+	MainMenu m_mainMenu;
 
 	int m_level;
 	int m_points;

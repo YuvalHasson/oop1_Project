@@ -103,19 +103,19 @@ void Board::initClock()
 			{
 				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
-
 			}
 		}
 		this->updateStatus(this->m_movingObjects[i].get());
-		
 	}
 
+	this->resetLocations();
 
 	this->m_cheese = Cheese::getCheese();
 
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	
 	--this->m_cheese;
+	MovingObject::resetLocation();
 }
 
 void Board::updateStatus(MovingObject* ptr)
@@ -135,3 +135,13 @@ void Board::updateStatus(MovingObject* ptr)
 	this->m_status.setGameLevel(this->m_level);
 }
 
+void Board::resetLocations()
+{
+	for (size_t i = 0; i < this->m_movingObjects.size(); i++)
+	{
+		if (MovingObject::isResetLocation())
+		{
+			this->m_movingObjects[i]->setInitialLocation();
+		}
+	}
+}
