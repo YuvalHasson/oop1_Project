@@ -26,13 +26,36 @@ void Controller::run()
 			case sf::Event::Closed:
 				this->m_window.close();
 				break;
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					if (this->m_gameState == GAME_STATE::HELP)
+					{
+						this->m_gameState = GAME_STATE::MAIN_MENU;
+					}
+					else
+					{
+						this->m_window.close();
+					}
+				}
+				break;
+			case sf::Event::MouseButtonReleased:
+				if (this->m_gameState == GAME_STATE::MAIN_MENU)
+				{
+					this->m_gameState = m_mainMenu.buttonPressed(&m_window, event.mouseButton);
+					
+					if (this->m_gameState == GAME_STATE::EXIT)
+					{
+						this->m_window.close();
+					}
+					else if (this->m_gameState == GAME_STATE::NEW_GAME)
+					{
+						//TODO:: insert music
+					}
+				}
+				break;
 			default:
 				break;
-			}
-			int num = m_mainMenu.buttonPressed(&m_window, event.mouseButton);
-			if (num == 2)
-			{
-				m_mainMenu.drawHelp(&m_window);
 			}
 		}
 		//draw

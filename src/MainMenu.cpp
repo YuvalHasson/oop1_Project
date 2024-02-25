@@ -70,6 +70,7 @@ int MainMenu::buttonPressed(sf::RenderWindow* window, const sf::Event::MouseButt
 	{
 		m_helpText.setFillColor(sf::Color::Green);
 		std::cout << "HELP\n";
+
 		return HELP;
 	}
 	else if (m_exitBtn.getGlobalBounds().contains(window->mapPixelToCoords({ event.x, event.y })))

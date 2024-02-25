@@ -16,11 +16,13 @@ private:
 
 	Board m_board;
 	MainMenu m_mainMenu;
+	
+	int m_gameState = 0;
 
 	int m_level;
 	int m_points;
 	int m_lives;
-	
+
 public:
 	Controller();
 	~Controller();
