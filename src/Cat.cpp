@@ -1,4 +1,5 @@
 #include "Cat.h"
+#include <iostream>
 
 Cat::Cat(Vertex loc, Size size, int speed)
 	:MovingObject(loc, size, speed)
@@ -10,6 +11,10 @@ Cat::Cat(Vertex loc, Size size, int speed)
 void Cat::move(sf::Time deltaTime)
 {
 	this->setLastLocation(this->getLocation());
+
+	auto mouseLoc = this->getMouseLocation();
+
+	//move cat here
 
 	this->directionRight();
 	this->getSprite().move(this->getDirection() * this->getSpeed() * deltaTime.asSeconds());

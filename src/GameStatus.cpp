@@ -20,6 +20,9 @@ GameStatus::GameStatus()
 	m_points.setStyle(sf::Text::Bold);
 	m_points.setPosition(sf::Vector2f(260.f, 60.f));
 
+	m_gameLevel.setString("Level: " + std::to_string(1));
+	m_gameLevel.setStyle(sf::Text::Bold);
+	m_gameLevel.setPosition(sf::Vector2f(410.f, 60.f));
 
 }
 
@@ -28,8 +31,7 @@ void GameStatus::draw(sf::RenderWindow* window)
 	window->draw(this->m_keys);
 	window->draw(this->m_lives);
 	window->draw(this->m_points);
-	//window->draw(this->m_RgameLevel);
-
+	window->draw(this->m_gameLevel);
 }
 
 void GameStatus::setLives(int lives)
@@ -47,28 +49,7 @@ void GameStatus::setPoints(int points)
 	this->m_points.setString("Points: " + std::to_string(points));
 }
 
-//void GameStatus::setGameLevel(int gameLevel)
-//{
-//	this->m_gameLevel = gameLevel;
-//}
-
-//
-//int GameStatus::getLives() const
-//{
-//	return this->m_lives;
-//}
-//
-//int GameStatus::getKeys() const
-//{
-//	return this->m_keys;
-//}
-//
-//int GameStatus::getPoints() const
-//{
-//	return this->m_points;
-//}
-//
-//int GameStatus::getGameLevel() const
-//{
-//	return this->m_gameLevel;
-//}
+void GameStatus::setGameLevel(int gameLevel)
+{
+	this->m_gameLevel.setString("Level: " + std::to_string(gameLevel));
+}

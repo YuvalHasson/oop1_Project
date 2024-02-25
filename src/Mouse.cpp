@@ -1,9 +1,8 @@
 #include "Mouse.h"
 #include <iostream>
 
-
-Mouse::Mouse(Vertex loc, Size size, int lives, int keys, int speed)
-	:MovingObject(loc, size, speed), m_lives(lives), m_keys(keys)
+Mouse::Mouse(Vertex loc, Size size, int lives, int speed)
+	:MovingObject(loc, size, speed), m_lives(lives), m_keys(0)
 {
 	this->setSprite(TEXTURE::mouse);
 	this->setLocation(this->getSprite().getPosition());
@@ -12,7 +11,7 @@ Mouse::Mouse(Vertex loc, Size size, int lives, int keys, int speed)
 void Mouse::move(sf::Time deltaTime)
 {
 	this->setLastLocation(this->getLocation());
-	//std::cout << this->getLastLocation().m_x << " " << this->getLastLocation().m_y << std::endl;
+	//std::cout << this->getLastLocation().x << " " << this->getLastLocation().y << std::endl;
 
 	auto s = this->getSize().m_x / 380;
 	auto origin = sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u);
@@ -46,6 +45,8 @@ void Mouse::move(sf::Time deltaTime)
 		this->getSprite().setScale(s, -s);
 	}
 	this->getSprite().move(this->getDirection() * this->getSpeed() * deltaTime.asSeconds());
+
+	this->setMouseLocation(this->getLocation());
 
 	this->setLocation(this->getSprite().getPosition());
 	

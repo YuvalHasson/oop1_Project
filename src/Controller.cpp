@@ -2,7 +2,7 @@
 
 Controller::Controller()
 	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Cat & Mouse", sf::Style::Close | sf::Style::Titlebar),
-	m_level(1), m_lives(3), m_points(0), m_board(m_level = 1, m_lives = 3, m_points = 0)
+	m_level(1), m_lives(3), m_points(0)
 {
 	this->m_window.setFramerateLimit(60);
 }
@@ -13,7 +13,6 @@ Controller::~Controller()
 
 void Controller::run()
 {
-	
 	while (this->m_window.isOpen())
 	{
 		this->m_window.clear(sf::Color(221, 221, 221));

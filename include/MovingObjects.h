@@ -9,6 +9,7 @@ private:
 	float m_speed;
 
 	sf::Vector2f m_lastLocation;
+	static sf::Vector2f m_mouseLocation;
 
 public:
 	MovingObject(Vertex, Size, int);
@@ -27,9 +28,11 @@ public:
 	virtual sf::Vector2f getDirection() const;
 	virtual float getSpeed() const;
 	virtual sf::Vector2f getLastLocation() const;
+	virtual sf::Vector2f getMouseLocation();
 
 	//set
 	virtual void setLastLocation(sf::Vector2f);
+	virtual void setMouseLocation(sf::Vector2f);
 
 	virtual void handleCollision(GameObject&) {};
 	virtual void handleCollision(Wall&) {};

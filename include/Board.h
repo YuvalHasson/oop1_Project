@@ -30,13 +30,13 @@ private:
 
 	GameStatus m_status;
 
+	int m_level;
 	int m_lives;
 	int m_points;
-	int m_keys;
 	int m_cheese;
 
 public:
-	Board(int, int, int);
+	Board();
 	~Board() = default;
 
 	void draw(sf::RenderWindow*);

@@ -22,6 +22,6 @@ public:
 	void setLives(int);
 	void setKeys(int);
 	void setPoints(int);
-	//void setGameLevel(int);
+	void setGameLevel(int);
 
 };

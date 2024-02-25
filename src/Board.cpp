@@ -1,10 +1,10 @@
 #include "Board.h"
-#include <typeinfo>
 
-Board::Board(int level, int lives, int points)
-	:m_lives(lives), m_points(points), m_keys(0)
+Board::Board()
+	:m_lives(3), m_points(0), m_level(1), m_cheese(),
+	m_cols(), m_rows()
 {
-	this->getLevel(level);	
+	this->getLevel(m_level);
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -55,7 +55,7 @@ void Board::initVector(char c, Vertex loc)
 		switch (c)
 		{
 		case '%': //mouse
-			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size_x, size_y), m_lives, m_keys, MouseSpeed));
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size_x, size_y), m_lives, MouseSpeed));
 			break;
 		case '^': //Cat
 			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size_x, size_y), CatSpeed));
@@ -109,11 +109,13 @@ void Board::initClock()
 		this->updateStatus(this->m_movingObjects[i].get());
 		
 	}
+
+
 	this->m_cheese = Cheese::getCheese();
 
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	
-	this->m_cheese = this->m_cheese - 1;
+	--this->m_cheese;
 }
 
 void Board::updateStatus(MovingObject* ptr)
@@ -121,7 +123,7 @@ void Board::updateStatus(MovingObject* ptr)
 	Mouse* mouse = dynamic_cast<Mouse*>(ptr);
 	if (mouse)
 	{
-		this->m_keys = mouse->getKeys();
+		this->m_status.setKeys(mouse->getKeys());
 		this->m_lives = mouse->getLives();
 		if (this->m_cheese == Cheese::getCheese())
 		{
@@ -129,7 +131,7 @@ void Board::updateStatus(MovingObject* ptr)
 		}
 	}
 	this->m_status.setLives(this->m_lives);
-	this->m_status.setKeys(this->m_keys);
 	this->m_status.setPoints(this->m_points);
+	this->m_status.setGameLevel(this->m_level);
 }
 
