@@ -13,8 +13,13 @@ private:
 	static sf::Vector2f m_mouseLocation;
 	static bool m_isResetLocation;
 
+	bool m_isRemove = false;
+
 public:
 	MovingObject(Vertex, Size, int);
+
+	void remove();
+	bool isRemove() const;
 
 	//move
 	virtual void move(sf::Time) = 0;

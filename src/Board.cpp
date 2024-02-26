@@ -2,8 +2,9 @@
 
 Board::Board()
 	:m_lives(3), m_points(0), m_level(1), m_cheese(),
-	m_cols(), m_rows()
+	m_cols(), m_rows(), m_timeLimit()
 {
+	srand(time(NULL));
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -19,20 +20,21 @@ void Board::draw(sf::RenderWindow* window)
 	}
 }
 
-void Board::getLevel(const int level)
+bool Board::getLevel(const int level)
 {
 	std::string currLvl = "Level" + std::to_string(level) + ".txt";
 
 	auto lvl = std::ifstream(currLvl);
 	if (!lvl)
 	{
-		exit(EXIT_FAILURE);
+		//exit(EXIT_FAILURE);
+		return false;
 	}
 	this->m_movingObjects.clear();
 	this->m_staticObjects.clear();
 	
 
-	lvl >> m_rows >> m_cols;
+	lvl >> this->m_rows >> this->m_cols >> this->m_timeLimit;
 
 	size_t row = 0;
 	for (auto line = std::string(); std::getline(lvl, line); row++)//line == col
@@ -42,11 +44,13 @@ void Board::getLevel(const int level)
 			initVector(line[col], Vertex((float)col, (float)row));
 		}
 	}
-
+	return true;
 }
 
 void Board::initVector(char c, Vertex loc)
 {
+	int randomPresent;
+
 	float size_x = (windowHeight - loc.m_x) / std::max(m_rows, m_cols);
 	float size_y = (WindowWidth - loc.m_y) / std::max(m_rows, m_cols);
 
@@ -73,7 +77,25 @@ void Board::initVector(char c, Vertex loc)
 			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size_x, size_y)));
 			break;
 		case '$': //Present
-			this->m_staticObjects.push_back(std::make_unique<Present>(loc, Size(size_x, size_y)));
+			
+			randomPresent  = rand() % 4;
+
+			if (randomPresent == 0)
+			{
+				this->m_staticObjects.push_back(std::make_unique<PresentLife>(loc, Size(size_x, size_y)));
+			}	
+			else if (randomPresent == 1)
+			{
+				this->m_staticObjects.push_back(std::make_unique<PresentCat>(loc, Size(size_x, size_y)));
+			}
+			else if (randomPresent == 2)
+			{
+				this->m_staticObjects.push_back(std::make_unique<PresentTime>(loc, Size(size_x, size_y)));
+			}
+			else if (randomPresent == 3)
+			{
+				this->m_staticObjects.push_back(std::make_unique<PresentFreeze>(loc, Size(size_x, size_y)));
+			}
 			break;
 		default:
 			break;
@@ -81,9 +103,9 @@ void Board::initVector(char c, Vertex loc)
 	}
 }
 
-void Board::initClock()
+void Board::handleAndMove()
 {
-	auto deltaTime = this->m_clock.restart();
+	auto deltaTime = this->m_movementClock.restart();
 	
 	for (size_t i = 0; i < this->m_movingObjects.size(); i++)
 	{
@@ -105,15 +127,18 @@ void Board::initClock()
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
 			}
 		}
+		this->setToRemove(this->m_movingObjects[i].get());
 		this->updateStatus(this->m_movingObjects[i].get());
 	}
 
+	this->setToFreeze();
 	this->resetLocations();
 
 	this->m_cheese = Cheese::getCheese();
-
-	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	
+	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
+	std::erase_if(this->m_movingObjects, [](const auto& movingObjects) { return movingObjects->isRemove(); });
+
 	--this->m_cheese;
 	MovingObject::resetLocation();
 }
@@ -126,6 +151,12 @@ void Board::updateStatus(MovingObject* ptr)
 		this->m_status.setKeys(mouse->getKeys());
 		this->m_lives = mouse->getLives();
 
+		if (PresentTime::getPresentTime())
+		{
+			this->m_timeLimit += ADDTIME;
+			PresentTime::setPresentTime(false);
+		}
+
 		if (this->m_cheese == Cheese::getCheese())
 		{
 			this->m_points += 5;
@@ -134,6 +165,7 @@ void Board::updateStatus(MovingObject* ptr)
 	this->m_status.setLives(this->m_lives);
 	this->m_status.setPoints(this->m_points);
 	this->m_status.setGameLevel(this->m_level);
+	this->m_status.setTimer(this->getTime());
 }
 
 void Board::resetLocations()
@@ -143,6 +175,69 @@ void Board::resetLocations()
 		if (MovingObject::isResetLocation())
 		{
 			this->m_movingObjects[i]->setInitialLocation();
+		}
+	}
+}
+
+void Board::resetClock()
+{
+	this->m_clock.restart();
+}
+
+int Board::getTime() const
+{
+	return this->m_timeLimit - this->m_clock.getElapsedTime().asSeconds();
+}
+
+int Board::getLives() const
+{
+	return this->m_lives;
+}
+
+int Board::getPoints() const
+{
+	return this->m_points;
+}
+
+void Board::setLives(int lives)
+{
+	this->m_lives = lives;
+}
+
+void Board::setPoints(int points)
+{
+	this->m_points = points;
+}
+
+void Board::setToRemove(MovingObject* ptr)
+{
+	if (PresentCat::getPresetnTaken())
+	{
+		Cat* cat = dynamic_cast<Cat*>(ptr);
+		if (cat)
+		{
+			cat->remove();
+			PresentCat::setPresentTaken(false);
+		}
+	}
+}
+
+void Board::setToFreeze()
+{
+	if (PresentFreeze::getPresentFreeze())
+	{
+		m_clockFreeze.restart();
+		Cat::setFreeze(true);
+
+		PresentFreeze::setPresentFreeze(false);
+	}
+	m_freezeTime = m_clockFreeze.getElapsedTime();
+	if (Cat::getFreeze())
+	{
+		std::cout << m_freezeTime.asSeconds() << std::endl;
+		if (m_freezeTime.asSeconds() >= 3)
+		{
+			Cat::setFreeze(false);
 		}
 	}
 }

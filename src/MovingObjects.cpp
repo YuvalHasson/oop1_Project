@@ -8,6 +8,17 @@ MovingObject::MovingObject(Vertex loc, Size size, int speed)
 {
 }
 
+void MovingObject::remove()
+{
+	this->m_isRemove = true;
+}
+
+bool MovingObject::isRemove() const
+{
+	return this->m_isRemove;
+}
+
+
 void MovingObject::directionUp()
 {
 	this->m_direction = sf::Vector2f(0, -1);

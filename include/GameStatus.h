@@ -23,5 +23,5 @@ public:
 	void setKeys(int);
 	void setPoints(int);
 	void setGameLevel(int);
-
+	void setTimer(int);
 };

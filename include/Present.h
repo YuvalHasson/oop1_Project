@@ -11,8 +11,8 @@ public:
 	Present(Vertex, Size);
 	virtual ~Present();
 
-	virtual void handleCollision(GameObject&);
-	virtual void handleCollision(Mouse&);
+	virtual void handleCollision(GameObject&) {};
+	virtual void handleCollision(Mouse&) {};
 
 	static int getPresents();
 };

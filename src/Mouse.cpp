@@ -75,7 +75,7 @@ void Mouse::handleCollision(Wall&)
 	this->getSprite().setPosition(this->getLastLocation());
 }
 
-void Mouse::handleCollision(Key& key)
+void Mouse::handleCollision(Key&)
 {
 	SoundResource::getSound().playSound(SOUND::key_pickup);
 	++this->m_keys;
@@ -111,4 +111,9 @@ int Mouse::getKeys() const
 int Mouse::getLives() const
 {
 	return this->m_lives;
+}
+
+void Mouse::addLife()
+{
+	this->m_lives++;
 }

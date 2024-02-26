@@ -12,6 +12,7 @@ struct Size {
 
 const int OBJ_AMOUNT = 11;
 const int SOUND_AMOUNT = 11;
+const int BACK_SOUND_AMNT = 2;
 
 enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
 
@@ -20,6 +21,8 @@ enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
 
 #define statusBarHeight 60
 #define statusBarWidth 950
+
+#define ADDTIME 5
 
 #define MouseSpeed 150.f
 #define CatSpeed 100.f
@@ -46,4 +49,10 @@ namespace SOUND
 	constexpr int eating = 2;
 	constexpr int scream = 3;
 	constexpr int present = 4;
+}
+
+namespace BACKGROUND
+{
+	constexpr int background = 0;
+	constexpr int menu = 1;
 }

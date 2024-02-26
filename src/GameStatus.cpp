@@ -24,6 +24,10 @@ GameStatus::GameStatus()
 	m_gameLevel.setStyle(sf::Text::Bold);
 	m_gameLevel.setPosition(sf::Vector2f(410.f, 60.f));
 
+	m_timer.setString("timer: " + std::to_string(0));
+	m_timer.setStyle(sf::Text::Bold);
+	m_timer.setPosition(sf::Vector2f(560.f, 60.f));
+
 }
 
 void GameStatus::draw(sf::RenderWindow* window)
@@ -32,6 +36,7 @@ void GameStatus::draw(sf::RenderWindow* window)
 	window->draw(this->m_lives);
 	window->draw(this->m_points);
 	window->draw(this->m_gameLevel);
+	window->draw(this->m_timer);
 }
 
 void GameStatus::setLives(int lives)
@@ -52,4 +57,9 @@ void GameStatus::setPoints(int points)
 void GameStatus::setGameLevel(int gameLevel)
 {
 	this->m_gameLevel.setString("Level: " + std::to_string(gameLevel));
+}
+
+void GameStatus::setTimer(int time)
+{
+	this->m_timer.setString("timer: " + std::to_string(time));
 }

@@ -13,27 +13,30 @@
 #include "Cheese.h"
 #include "Door.h"
 #include "Key.h"
-#include "Present.h"
+#include "PresentLife.h"
+#include "PresentCat.h"
+#include "PresentTime.h"
+#include "PresentFreeze.h"
 #include "Cat.h"
 
 
 class Board
 {
 private:
-	
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 
-	sf::Clock m_clock;
+	sf::Clock m_clock, m_movementClock;
 
-	int m_rows, m_cols;
+	int m_rows, m_cols, m_timeLimit;
 
 	GameStatus m_status;
 
-	int m_level;
-	int m_lives;
-	int m_points;
-	int m_cheese;
+	int m_level, m_lives, m_points, m_cheese;
+
+	sf::Clock m_clockFreeze;
+	sf::Time m_freezeTime;
+	
 
 public:
 	Board();
@@ -42,11 +45,22 @@ public:
 	void draw(sf::RenderWindow*);
 	
 	//init level
-	void getLevel(const int);
+	bool getLevel(const int);
 	void initVector(char, Vertex);
-	void initClock();
-
-	
+	void handleAndMove();
+		
 	void updateStatus(MovingObject*);
 	void resetLocations();
+	void resetClock();
+
+	//get
+	int getTime() const;
+	int getLives() const;
+	int getPoints() const;
+
+	//set
+	void setLives(int);
+	void setPoints(int);
+	void setToRemove(MovingObject*);
+	void setToFreeze();
 };

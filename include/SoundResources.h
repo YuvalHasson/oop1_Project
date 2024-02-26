@@ -11,7 +11,11 @@ private:
 		"GiftPickup.ogg"
 	};
 
-	sf::Music m_backgroundMusic;
+	std::string m_backgroundNames[BACK_SOUND_AMNT] = {
+		"Monkeys.ogg", "Menu.ogg"
+	};
+
+	sf::Music m_backgroundMusic[BACK_SOUND_AMNT];
 	sf::SoundBuffer m_buffers[SOUND_AMOUNT];;
 	sf::Sound m_sounds[SOUND_AMOUNT];
 
@@ -22,5 +26,6 @@ public:
 	static SoundResource& getSound();
 
 	void playSound(int);
-	void playBackgroud();
+	void playBackground(int);
+	void stopBackground(int);
 };

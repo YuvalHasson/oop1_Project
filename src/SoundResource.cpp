@@ -3,8 +3,10 @@
 
 SoundResource::SoundResource()
 {
-	this->m_backgroundMusic.openFromFile("Monkeys.ogg");
-
+	for (size_t i = 0; i < BACK_SOUND_AMNT; i++)
+	{
+		this->m_backgroundMusic[i].openFromFile(this->m_backgroundNames[i]);
+	}
 	for (size_t i = 0; i < SOUND_AMOUNT; i++)
 	{
 		this->m_buffers[i].loadFromFile(this->m_soundNames[i]);
@@ -13,6 +15,7 @@ SoundResource::SoundResource()
 	{
 		this->m_sounds[i].setBuffer(this->m_buffers[i]);
 	}
+
 }
 
 SoundResource::~SoundResource()
@@ -30,7 +33,12 @@ void SoundResource::playSound(int sound)
 	this->m_sounds[sound].play();
 }
 
-void SoundResource::playBackgroud()
+void SoundResource::playBackground(int sound)
 {
-	this->m_backgroundMusic.play();
+	this->m_backgroundMusic[sound].play();
+}
+
+void SoundResource::stopBackground(int sound)
+{
+	this->m_backgroundMusic[sound].stop();
 }

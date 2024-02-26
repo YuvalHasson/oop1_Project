@@ -1,6 +1,8 @@
 #include "Cat.h"
 #include <iostream>
 
+bool Cat::m_freeze = false;
+
 Cat::Cat(Vertex loc, Size size, int speed)
 	:MovingObject(loc, size, speed)
 {
@@ -24,7 +26,11 @@ void Cat::move(sf::Time deltaTime)
 		this->directionRight();
 	}
 
-	//this->directionRight();
+	this->directionRight();
+	if (m_freeze)
+	{
+		this->resetDirection();
+	}
 	this->getSprite().move(this->getDirection() * this->getSpeed() * deltaTime.asSeconds());
 
 	//std::cout << "Location: " << this->getLocation().x << " " << this->getLocation().y << std::endl;
@@ -53,4 +59,14 @@ void Cat::handleCollision(Door&)
 {
 	this->setLocation(this->getLastLocation());
 	this->getSprite().setPosition(this->getLastLocation());
+}
+
+void Cat::setFreeze(bool freeze)
+{
+	m_freeze = freeze;
+}
+
+bool Cat::getFreeze()
+{
+	return m_freeze;
 }

@@ -24,6 +24,9 @@ public:
 	virtual void handleCollision(Door&) override;
 	virtual void handleCollision(Present&) override;
 
+	//get
 	int getKeys() const;
 	int getLives() const;
+
+	void addLife();
 };

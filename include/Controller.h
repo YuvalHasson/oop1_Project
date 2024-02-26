@@ -32,6 +32,7 @@ public:
 	void pollEvent();
 	void updateLevel();
 	void menu();
+	void returnToMenu();
 
 	//init
 	sf::Sprite initBackground();
