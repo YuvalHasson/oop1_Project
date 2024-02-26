@@ -72,9 +72,10 @@ void Controller::updateLevel()
 {
 	if (this->m_gameState == GAME_STATE::NEW_GAME)
 	{
-	
+
 		if (Cheese::getCheese() == 0)
 		{
+			this->m_board.resetClock();
 			this->m_level += 1;
 			if (!this->m_board.getLevel(this->m_level))
 			{

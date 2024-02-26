@@ -35,6 +35,7 @@ void SoundResource::playSound(int sound)
 
 void SoundResource::playBackground(int sound)
 {
+	this->m_backgroundMusic[sound].setLoop(true);
 	this->m_backgroundMusic[sound].play();
 }
 
