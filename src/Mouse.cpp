@@ -58,6 +58,7 @@ void Mouse::handleCollision(GameObject& other)
 
 void Mouse::handleCollision(Cat&)
 {
+	SoundResource::getSound().playSound(SOUND::scream);
 	--this->m_lives;
 	this->setResetLocation();
 	std::cout << "cat" << std::endl;
@@ -65,7 +66,7 @@ void Mouse::handleCollision(Cat&)
 
 void Mouse::handleCollision(Cheese&)
 {
-	std::cout << "c" << std::endl;
+	SoundResource::getSound().playSound(SOUND::eating);
 }
 
 void Mouse::handleCollision(Wall&)
@@ -76,7 +77,7 @@ void Mouse::handleCollision(Wall&)
 
 void Mouse::handleCollision(Key& key)
 {
-	std::cout << "key" << std::endl;
+	SoundResource::getSound().playSound(SOUND::key_pickup);
 	++this->m_keys;
 }
 
@@ -85,6 +86,7 @@ void Mouse::handleCollision(Door&)
 	std::cout << "d" << std::endl;
 	if (this->m_keys > 0)
 	{
+		SoundResource::getSound().playSound(SOUND::door_open);
 		--this->m_keys;
 	}
 	else
@@ -96,8 +98,9 @@ void Mouse::handleCollision(Door&)
 
 void Mouse::handleCollision(Present&)
 {
-	std::cout << "p" << std::endl;
+	SoundResource::getSound().playSound(SOUND::present);
 
+	std::cout << "p" << std::endl;
 }
 
 int Mouse::getKeys() const

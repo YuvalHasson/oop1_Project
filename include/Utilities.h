@@ -11,6 +11,7 @@ struct Size {
 };
 
 const int OBJ_AMOUNT = 11;
+const int SOUND_AMOUNT = 11;
 
 enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
 
@@ -36,5 +37,13 @@ namespace TEXTURE
 	constexpr int menu = 8;
 	constexpr int button = 9;
 	constexpr int help = 10;
+}
 
+namespace SOUND
+{
+	constexpr int key_pickup = 0;
+	constexpr int door_open = 1;
+	constexpr int eating = 2;
+	constexpr int scream = 3;
+	constexpr int present = 4;
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "MovingObjects.h"
-#include "Wall.h"
+#include "SoundResources.h"
 
 class Mouse : public MovingObject
 {

@@ -2,7 +2,7 @@
 
 Controller::Controller()
 	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Cat & Mouse", sf::Style::Close | sf::Style::Titlebar),
-	m_level(1), m_lives(3), m_points(0)
+	m_level(0), m_lives(3), m_points(0)
 {
 	this->m_window.setFramerateLimit(60);
 }
@@ -16,6 +16,7 @@ void Controller::run()
 	while (this->m_window.isOpen())
 	{
 		this->updateLevel();
+		this->pollEvent();
 		this->menu();
 	}
 }
@@ -56,6 +57,7 @@ void Controller::pollEvent()
 				else if (this->m_gameState == GAME_STATE::NEW_GAME)
 				{
 					//TODO:: insert music
+					SoundResource::getSound().playBackgroud();
 				}
 			}
 			break;
@@ -67,11 +69,14 @@ void Controller::pollEvent()
 
 void Controller::updateLevel()
 {
-	this->pollEvent();
 	if (this->m_gameState == GAME_STATE::NEW_GAME)
 	{
 		//TODO: check cheese amount
-		//this->m_board.getLevel(this->m_level);
+		if (Cheese::getCheese() == 0)
+		{
+			this->m_level += 1;
+			this->m_board.getLevel(this->m_level);
+		}
 	}
 }
 

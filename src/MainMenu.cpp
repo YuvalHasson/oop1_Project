@@ -42,7 +42,7 @@ MainMenu::MainMenu()
 	m_exitText.setPosition(435, 460.f);
 }
 
-void MainMenu::drawMainMenu(sf::RenderWindow* window)
+void MainMenu::drawMainMenu(sf::RenderWindow* window) const
 {
 	window->draw(m_mainBg);
 	window->draw(m_newGameBtn);
@@ -54,7 +54,7 @@ void MainMenu::drawMainMenu(sf::RenderWindow* window)
 
 }
 
-void MainMenu::drawHelp(sf::RenderWindow* window)
+void MainMenu::drawHelp(sf::RenderWindow* window) const
 {
 	window->draw(m_helpPage);
 }

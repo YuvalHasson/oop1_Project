@@ -4,7 +4,6 @@ Board::Board()
 	:m_lives(3), m_points(0), m_level(1), m_cheese(),
 	m_cols(), m_rows()
 {
-	this->getLevel(m_level);
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -43,6 +42,7 @@ void Board::getLevel(const int level)
 			initVector(line[col], Vertex((float)col, (float)row));
 		}
 	}
+
 }
 
 void Board::initVector(char c, Vertex loc)

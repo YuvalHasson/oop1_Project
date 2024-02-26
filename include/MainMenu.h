@@ -16,7 +16,7 @@ private:
 public:
 	MainMenu();
 
-	void drawMainMenu(sf::RenderWindow* window);
-	void drawHelp(sf::RenderWindow* window);
+	void drawMainMenu(sf::RenderWindow* window) const;
+	void drawHelp(sf::RenderWindow* window) const;
 	int buttonPressed(sf::RenderWindow* window, const sf::Event::MouseButtonEvent& event);
 };
