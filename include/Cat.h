@@ -6,6 +6,7 @@ class Cat : public MovingObject
 {
 private:
 	static bool m_freeze;
+	bool m_isMetWall = false;
 
 public:
 	Cat(Vertex, Size, int);
@@ -21,6 +22,7 @@ public:
 
 	//set
 	static void setFreeze(bool);
+	virtual void updateMetWall();
 
 	//get
 	static bool getFreeze();

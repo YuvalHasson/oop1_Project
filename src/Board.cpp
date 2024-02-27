@@ -124,6 +124,10 @@ void Board::handleAndMove()
 			{
 				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
+				if (dynamic_cast<Cat*>(&*m_movingObjects[i]))
+				{
+					dynamic_cast<Cat*>(this->m_movingObjects[i].get())->updateMetWall();
+				}
 			}
 		}
 		this->setToRemove(this->m_movingObjects[i].get());
