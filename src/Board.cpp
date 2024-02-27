@@ -1,8 +1,9 @@
 #include "Board.h"
 
 Board::Board()
-	:m_lives(3), m_points(0), m_level(1), m_cheese(),
-	m_presents(), m_cols(), m_rows(), m_timeLimit()
+	:m_lives(3), m_points(0), m_level(1),
+	m_cheese(), m_doors(), m_presents(),
+	m_cols(), m_rows(), m_timeLimit()
 {
 	srand(time(NULL));
 }
@@ -76,8 +77,15 @@ void Board::initVector(char c, Vertex loc)
 			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size_x, size_y)));
 			break;
 		case '$': //Present
-			
-			randomPresent  = rand() % 4;
+
+			if (this->m_timeLimit != -1)
+			{
+				randomPresent  = rand() % 4;
+			}
+			else
+			{
+				randomPresent = rand() % 3;
+			}
 
 			if (randomPresent == 0)
 			{
@@ -89,11 +97,11 @@ void Board::initVector(char c, Vertex loc)
 			}
 			else if (randomPresent == 2)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentTime>(loc, Size(size_x, size_y)));
+				this->m_staticObjects.push_back(std::make_unique<PresentFreeze>(loc, Size(size_x, size_y)));
 			}
 			else if (randomPresent == 3)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentFreeze>(loc, Size(size_x, size_y)));
+				this->m_staticObjects.push_back(std::make_unique<PresentTime>(loc, Size(size_x, size_y)));
 			}
 			break;
 		default:
@@ -124,10 +132,8 @@ void Board::handleAndMove()
 			{
 				this->m_movingObjects[i]->handleCollision(*this->m_staticObjects[j]);
 				this->m_staticObjects[j]->handleCollision(*this->m_movingObjects[i]);
-				if (dynamic_cast<Cat*>(&*m_movingObjects[i]))
-				{
-					dynamic_cast<Cat*>(this->m_movingObjects[i].get())->updateMetWall();
-				}
+
+				this->checkCatWall(m_movingObjects[i].get());
 			}
 		}
 		this->setToRemove(this->m_movingObjects[i].get());
@@ -137,14 +143,12 @@ void Board::handleAndMove()
 	this->setToFreeze();
 	this->resetLocations();
 
-	this->m_cheese = Cheese::getCheese();
-	this->m_presents = Present::getPresents();
+	this->setCurrentObj();
 	
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	std::erase_if(this->m_movingObjects, [](const auto& movingObjects) { return movingObjects->isRemove(); });
 
-	--this->m_cheese;
-	--this->m_presents;
+	this->setNextObj();
 
 	MovingObject::resetLocation();
 }
@@ -156,7 +160,7 @@ void Board::updateStatus(MovingObject* ptr)
 	{
 		this->m_status.setKeys(mouse->getKeys());
 		this->m_lives = mouse->getLives();
-
+		
 		if (PresentTime::getPresentTime())
 		{
 			this->m_timeLimit += ADDTIME;
@@ -167,16 +171,23 @@ void Board::updateStatus(MovingObject* ptr)
 		{
 			this->m_points += PRESENTPOINTS;
 		}
-
 		if (this->m_cheese == Cheese::getCheese())
 		{
 			this->m_points += CHEESEPOINTS;
 		}
+		if (this->m_doors == Door::getDoor())
+		{
+			this->m_points += DOORPOINTS;
+		}
+
 	}
 	this->m_status.setLives(this->m_lives);
 	this->m_status.setPoints(this->m_points);
 	this->m_status.setGameLevel(this->m_level);
-	this->m_status.setTimer(this->getTime());
+	if (this->m_timeLimit != -1)
+	{
+		this->m_status.setTimer(this->getTime());
+	}
 }
 
 void Board::resetLocations()
@@ -195,9 +206,17 @@ void Board::resetClock()
 	this->m_clock.restart();
 }
 
+void Board::checkCatWall(MovingObject* ptr)
+{
+	if (dynamic_cast<Cat*>(ptr))
+	{
+		dynamic_cast<Cat*>(ptr)->updateMetWall();
+	}
+}
+
 int Board::getTime() const
 {
-	return this->m_timeLimit - this->m_clock.getElapsedTime().asSeconds();
+	return this->m_timeLimit == -1 ? 1 : this->m_timeLimit - this->m_clock.getElapsedTime().asSeconds();
 }
 
 int Board::getLives() const
@@ -223,6 +242,20 @@ void Board::setPoints(int points)
 void Board::setLevel(int level)
 {
 	this->m_level = level;
+}
+
+void Board::setCurrentObj()
+{
+	this->m_cheese = Cheese::getCheese();
+	this->m_presents = Present::getPresents();
+	this->m_doors = Door::getDoor();
+}
+
+void Board::setNextObj()
+{
+	--this->m_cheese;
+	--this->m_presents;
+	--this->m_doors;
 }
 
 void Board::setToRemove(MovingObject* ptr)

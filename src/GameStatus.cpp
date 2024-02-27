@@ -35,7 +35,7 @@ GameStatus::GameStatus()
 	this->m_clock.setPosition(760.f, 5.f);
 	this->m_clock.setSize(sf::Vector2f(35.f, 35.f));
 	this->m_timer.setFont(*Rescources::getResource().getFont());
-	this->m_timer.setString(": " + std::to_string(0));
+	this->m_timer.setString(": --");
 	this->m_timer.setStyle(sf::Text::Bold);
 	this->m_timer.setPosition(sf::Vector2f(800.f, 5.f));
 }

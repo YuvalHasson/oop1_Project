@@ -24,13 +24,14 @@ enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
 
 #define ADDTIME 5
 
-#define MouseSpeed 150.f
+#define MouseSpeed 165.f
 #define CatSpeed 100.f
 
 #define FREEZETIME 3
 
-#define CHEESEPOINTS 5
-#define PRESENTPOINTS 3
+#define CHEESEPOINTS 10
+#define PRESENTPOINTS 5
+#define DOORPOINTS 2
 
 namespace TEXTURE
 {

@@ -89,7 +89,7 @@ void Controller::updateLevel()
 					SoundResource::getSound().playSound(SOUND::level_up);
 					this->m_board.resetClock();
 					this->m_board.setLevel(this->m_level);
-					this->m_points = this->m_board.getPoints();
+					this->m_points = this->m_board.getPoints() + CHEESEPOINTS;
 				}
 			}
 		}

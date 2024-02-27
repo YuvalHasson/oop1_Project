@@ -17,7 +17,6 @@ class GameObject
 {
 private:
 	sf::Sprite m_sprite;
-	sf::Texture* m_texture;
 
 	sf::Vector2f m_location;
 	Size m_size;
@@ -29,7 +28,6 @@ public:
 	//get
 	virtual sf::Vector2f getLocation() const;
 	virtual Size getSize() const;
-	virtual sf::Texture* getTexture() const;
 	virtual sf::Sprite& getSprite();
 
 	//set

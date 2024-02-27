@@ -32,7 +32,7 @@ private:
 
 	GameStatus m_status;
 
-	int m_level, m_lives, m_points, m_cheese, m_presents;
+	int m_level, m_lives, m_points, m_cheese, m_presents, m_doors;
 
 	sf::Clock m_clockFreeze;
 	sf::Time m_freezeTime;
@@ -52,6 +52,7 @@ public:
 	void updateStatus(MovingObject*);
 	void resetLocations();
 	void resetClock();
+	void checkCatWall(MovingObject*);
 
 	//get
 	int getTime() const;
@@ -62,6 +63,8 @@ public:
 	void setLives(int);
 	void setPoints(int);
 	void setLevel(int);
+	void setCurrentObj();
+	void setNextObj();
 	void setToRemove(MovingObject*);
 	void setToFreeze();
 };
