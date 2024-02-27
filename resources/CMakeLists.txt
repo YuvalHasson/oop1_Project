@@ -1,5 +1,5 @@
-﻿#configure_file ("Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+﻿configure_file ("Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Cat.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Door.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -12,6 +12,9 @@ configure_file ("Background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Menu.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Help.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Heart.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Scoreboard.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Clock.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Monkeys.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("KeysPickup.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -20,3 +23,9 @@ configure_file ("Eating.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Scream.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("GiftPickup.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Menu.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("ItemRespawn.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("GameComplete.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("GameWin.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("GameOver.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+
+

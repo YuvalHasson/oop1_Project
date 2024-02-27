@@ -8,7 +8,8 @@ class SoundResource
 private:
 	std::string m_soundNames[SOUND_AMOUNT] = {
 		"KeysPickup.ogg", "OpenDoor.ogg", "Eating.ogg", "Scream.ogg",
-		"GiftPickup.ogg"
+		"GiftPickup.ogg", "ItemRespawn.ogg", "GameComplete.ogg",
+		"GameWin.ogg", "GameOver.ogg"
 	};
 
 	std::string m_backgroundNames[BACK_SOUND_AMNT] = {

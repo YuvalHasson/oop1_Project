@@ -7,6 +7,11 @@
 class GameStatus
 {
 private:
+	sf::RectangleShape m_heart;
+	sf::RectangleShape m_clock;
+	sf::RectangleShape m_key;
+	sf::RectangleShape m_score;
+
 	sf::Text m_timer;
 	sf::Text m_gameLevel;
 	sf::Text m_lives;
@@ -16,7 +21,7 @@ private:
 public:
 	GameStatus();
 
-	void draw(sf::RenderWindow* window);
+	void draw(sf::RenderWindow* window) const;
 
 	//set
 	void setLives(int);

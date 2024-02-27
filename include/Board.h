@@ -32,7 +32,7 @@ private:
 
 	GameStatus m_status;
 
-	int m_level, m_lives, m_points, m_cheese;
+	int m_level, m_lives, m_points, m_cheese, m_presents;
 
 	sf::Clock m_clockFreeze;
 	sf::Time m_freezeTime;
@@ -61,6 +61,7 @@ public:
 	//set
 	void setLives(int);
 	void setPoints(int);
+	void setLevel(int);
 	void setToRemove(MovingObject*);
 	void setToFreeze();
 };

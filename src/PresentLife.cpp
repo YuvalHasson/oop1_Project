@@ -15,7 +15,6 @@ void PresentLife::handleCollision(GameObject& other)
 
 void PresentLife::handleCollision(Mouse& mouse)
 {
-	std::cout << "Life gift\n";
 	mouse.addLife();
 
 	this->Eaten();

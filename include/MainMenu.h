@@ -18,5 +18,6 @@ public:
 
 	void drawMainMenu(sf::RenderWindow* window) const;
 	void drawHelp(sf::RenderWindow* window) const;
+	void changecolerWhilePointing(sf::RenderWindow*);
 	int buttonPressed(sf::RenderWindow* window, const sf::Event::MouseButtonEvent& event);
 };

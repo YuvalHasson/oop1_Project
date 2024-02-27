@@ -70,21 +70,25 @@ void Controller::pollEvent()
 
 void Controller::updateLevel()
 {
+	this->m_mainMenu.changecolerWhilePointing(&this->m_window);
 	if (this->m_gameState == GAME_STATE::NEW_GAME)
 	{
-	
 		if (Cheese::getCheese() == 0)
 		{
+			this->m_board.resetClock();
 			this->m_level += 1;
 			if (!this->m_board.getLevel(this->m_level))
 			{
+				SoundResource::getSound().playSound(SOUND::win);
 				this->returnToMenu();
 			}
 			else
 			{
 				if (this->m_level > 1)
 				{
+					SoundResource::getSound().playSound(SOUND::level_up);
 					this->m_board.resetClock();
+					this->m_board.setLevel(this->m_level);
 					this->m_points = this->m_board.getPoints();
 				}
 			}
@@ -92,14 +96,17 @@ void Controller::updateLevel()
 
 		if (this->m_board.getTime() <= 0)
 		{
+			SoundResource::getSound().playSound(SOUND::time_over);
 			this->m_board.resetClock();
+			this->m_lives = this->m_board.getLives();
 			this->m_board.setLives(--this->m_lives);
 			this->m_board.setPoints(this->m_points);
 			this->m_board.getLevel(this->m_level);
 		}
 
-		if (this->m_board.getLives() == 0)
+		if (this->m_board.getLives() <= 0)
 		{
+			SoundResource::getSound().playSound(SOUND::lose);
 			this->returnToMenu();
 		}
 	}

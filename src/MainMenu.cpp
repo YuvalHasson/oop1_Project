@@ -1,6 +1,4 @@
 #include "MainMenu.h"
-#include <iostream>
-
 
 MainMenu::MainMenu()
 {
@@ -51,7 +49,6 @@ void MainMenu::drawMainMenu(sf::RenderWindow* window) const
 	window->draw(m_exitText);
 	window->draw(m_helpBtn);
 	window->draw(m_helpText);
-
 }
 
 void MainMenu::drawHelp(sf::RenderWindow* window) const
@@ -59,23 +56,49 @@ void MainMenu::drawHelp(sf::RenderWindow* window) const
 	window->draw(m_helpPage);
 }
 
+void MainMenu::changecolerWhilePointing(sf::RenderWindow* window)
+{
+	sf::Vector2i mouseLoc = sf::Mouse::getPosition(*window);
+	if (m_newGameBtn.getGlobalBounds().contains(mouseLoc.x, mouseLoc.y))
+	{
+		m_newGameBtn.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_newGameBtn.setFillColor(sf::Color::White);
+	}
+
+	if (m_helpBtn.getGlobalBounds().contains(mouseLoc.x, mouseLoc.y))
+	{
+		m_helpBtn.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_helpBtn.setFillColor(sf::Color::White);
+	}
+
+	if (m_exitBtn.getGlobalBounds().contains(mouseLoc.x, mouseLoc.y))
+	{
+		m_exitBtn.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_exitBtn.setFillColor(sf::Color::White);
+	}
+}
+
 int MainMenu::buttonPressed(sf::RenderWindow* window, const sf::Event::MouseButtonEvent& event)
 {
 	if (m_newGameBtn.getGlobalBounds().contains(window->mapPixelToCoords({ event.x, event.y })))
 	{
-		m_newGameTxt.setFillColor(sf::Color::Green);
 		return NEW_GAME;
 	}
 	else if (m_helpBtn.getGlobalBounds().contains(window->mapPixelToCoords({ event.x, event.y })))
 	{
-		m_helpText.setFillColor(sf::Color::Green);
-		std::cout << "HELP\n";
-
 		return HELP;
 	}
 	else if (m_exitBtn.getGlobalBounds().contains(window->mapPixelToCoords({ event.x, event.y })))
 	{
-		m_exitText.setFillColor(sf::Color::Green);
 		return EXIT;
 	}
 	return MAIN_MENU;

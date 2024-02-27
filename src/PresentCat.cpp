@@ -16,7 +16,6 @@ void PresentCat::handleCollision(GameObject& other)
 
 void PresentCat::handleCollision(Mouse&)
 {
-	std::cout << "cat gift\n";
 	setPresentTaken(true);
 	this->Eaten();
 }

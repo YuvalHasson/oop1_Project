@@ -1,5 +1,4 @@
 #include "Mouse.h"
-#include <iostream>
 
 Mouse::Mouse(Vertex loc, Size size, int lives, int speed)
 	:MovingObject(loc, size, speed), m_lives(lives), m_keys(0)
@@ -12,7 +11,6 @@ Mouse::Mouse(Vertex loc, Size size, int lives, int speed)
 void Mouse::move(sf::Time deltaTime)
 {
 	this->setLastLocation(this->getLocation());
-	//std::cout << this->getLastLocation().x << " " << this->getLastLocation().y << std::endl;
 
 	auto s = this->getSize().m_x / 380;
 
@@ -61,7 +59,6 @@ void Mouse::handleCollision(Cat&)
 	SoundResource::getSound().playSound(SOUND::scream);
 	--this->m_lives;
 	this->setResetLocation();
-	std::cout << "cat" << std::endl;
 }
 
 void Mouse::handleCollision(Cheese&)
@@ -83,7 +80,6 @@ void Mouse::handleCollision(Key&)
 
 void Mouse::handleCollision(Door&)
 {
-	std::cout << "d" << std::endl;
 	if (this->m_keys > 0)
 	{
 		SoundResource::getSound().playSound(SOUND::door_open);
@@ -99,8 +95,6 @@ void Mouse::handleCollision(Door&)
 void Mouse::handleCollision(Present&)
 {
 	SoundResource::getSound().playSound(SOUND::present);
-
-	std::cout << "p" << std::endl;
 }
 
 int Mouse::getKeys() const

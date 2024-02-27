@@ -2,7 +2,7 @@
 
 Board::Board()
 	:m_lives(3), m_points(0), m_level(1), m_cheese(),
-	m_cols(), m_rows(), m_timeLimit()
+	m_presents(), m_cols(), m_rows(), m_timeLimit()
 {
 	srand(time(NULL));
 }
@@ -27,7 +27,6 @@ bool Board::getLevel(const int level)
 	auto lvl = std::ifstream(currLvl);
 	if (!lvl)
 	{
-		//exit(EXIT_FAILURE);
 		return false;
 	}
 	this->m_movingObjects.clear();
@@ -135,11 +134,14 @@ void Board::handleAndMove()
 	this->resetLocations();
 
 	this->m_cheese = Cheese::getCheese();
+	this->m_presents = Present::getPresents();
 	
 	std::erase_if(this->m_staticObjects, [](const auto& StaticObejects) { return StaticObejects->isEaten(); });
 	std::erase_if(this->m_movingObjects, [](const auto& movingObjects) { return movingObjects->isRemove(); });
 
 	--this->m_cheese;
+	--this->m_presents;
+
 	MovingObject::resetLocation();
 }
 
@@ -157,9 +159,14 @@ void Board::updateStatus(MovingObject* ptr)
 			PresentTime::setPresentTime(false);
 		}
 
+		if (this->m_presents == Present::getPresents())
+		{
+			this->m_points += PRESENTPOINTS;
+		}
+
 		if (this->m_cheese == Cheese::getCheese())
 		{
-			this->m_points += 5;
+			this->m_points += CHEESEPOINTS;
 		}
 	}
 	this->m_status.setLives(this->m_lives);
@@ -209,6 +216,11 @@ void Board::setPoints(int points)
 	this->m_points = points;
 }
 
+void Board::setLevel(int level)
+{
+	this->m_level = level;
+}
+
 void Board::setToRemove(MovingObject* ptr)
 {
 	if (PresentCat::getPresetnTaken())
@@ -234,8 +246,7 @@ void Board::setToFreeze()
 	m_freezeTime = m_clockFreeze.getElapsedTime();
 	if (Cat::getFreeze())
 	{
-		std::cout << m_freezeTime.asSeconds() << std::endl;
-		if (m_freezeTime.asSeconds() >= 3)
+		if (m_freezeTime.asSeconds() >= FREEZETIME)
 		{
 			Cat::setFreeze(false);
 		}
