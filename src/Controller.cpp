@@ -1,7 +1,7 @@
 #include "Controller.h"
 
 Controller::Controller()
-	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Cat & Mouse", sf::Style::Close | sf::Style::Titlebar),
+	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Mouse & Cat", sf::Style::Close | sf::Style::Titlebar),
 	m_level(0), m_lives(3), m_points(0)
 {
 	this->m_window.setFramerateLimit(60);

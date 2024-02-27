@@ -14,6 +14,7 @@ void PresentTime::handleCollision(GameObject& other)
 
 void PresentTime::handleCollision(Mouse&)
 {
+	SoundResource::getSound().playSound(SOUND::add_time);
 	setPresentTime(true);
 	this->Eaten();
 }

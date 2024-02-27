@@ -248,6 +248,7 @@ void Board::setToFreeze()
 	{
 		if (m_freezeTime.asSeconds() >= FREEZETIME)
 		{
+			SoundResource::getSound().playSound(SOUND::unfreeze);
 			Cat::setFreeze(false);
 		}
 	}

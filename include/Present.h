@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StaticObjects.h"
+#include "SoundResources.h"
 
 class Present : public StaticObjects
 {

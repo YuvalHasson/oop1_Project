@@ -11,7 +11,7 @@ struct Size {
 };
 
 const int OBJ_AMOUNT = 14;
-const int SOUND_AMOUNT = 11;
+const int SOUND_AMOUNT = 13;
 const int BACK_SOUND_AMNT = 2;
 
 enum GAME_STATE { MAIN_MENU, NEW_GAME, HELP, EXIT };
@@ -61,6 +61,10 @@ namespace SOUND
 	constexpr int level_up = 6;
 	constexpr int win = 7;
 	constexpr int lose = 8;
+	constexpr int freeze = 9;
+	constexpr int unfreeze = 10;
+	constexpr int life = 11;
+	constexpr int add_time = 12;
 }
 
 namespace BACKGROUND

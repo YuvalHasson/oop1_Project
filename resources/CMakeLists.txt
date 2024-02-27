@@ -27,5 +27,7 @@ configure_file ("ItemRespawn.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("GameComplete.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("GameWin.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("GameOver.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
-
-
+configure_file ("CatFreeze.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("FreezeEnd.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("AddLife.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("AddTime.ogg" ${CMAKE_BINARY_DIR} COPYONLY)

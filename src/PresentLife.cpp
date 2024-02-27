@@ -1,8 +1,6 @@
 #include "PresentLife.h"
 #include "Mouse.h"
 
-#include <iostream>
-
 PresentLife::PresentLife(Vertex loc, Size size)
 	:Present(loc, size)
 {
@@ -15,7 +13,7 @@ void PresentLife::handleCollision(GameObject& other)
 
 void PresentLife::handleCollision(Mouse& mouse)
 {
+	SoundResource::getSound().playSound(SOUND::life);
 	mouse.addLife();
-
 	this->Eaten();
 }

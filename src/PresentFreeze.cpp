@@ -14,6 +14,7 @@ void PresentFreeze::handleCollision(GameObject& other)
 
 void PresentFreeze::handleCollision(Mouse&)
 {
+	SoundResource::getSound().playSound(SOUND::freeze);
 	setPresentFreeze(true);
 	this->Eaten();
 }
