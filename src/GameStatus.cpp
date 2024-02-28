@@ -75,5 +75,12 @@ void GameStatus::setGameLevel(int gameLevel)
 
 void GameStatus::setTimer(int time)
 {
-	this->m_timer.setString(": " + std::to_string(time));
+	if (time == -1)
+	{
+		this->m_timer.setString(": --");
+	}
+	else 
+	{
+		this->m_timer.setString(": " + std::to_string(time));
+	}
 }

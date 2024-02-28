@@ -41,7 +41,9 @@ void GameObject::setSprite(int obj)
 	this->m_sprite.setTexture(*Rescources::getResource().getTexture(obj));
 	this->m_sprite.setScale(s, s);
 	this->m_sprite.setOrigin(sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u));
-	this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1.f), this->getSize().m_y * (y + 1.f)));
+	//this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1.f), this->getSize().m_y * (y + 1.f)));
+	this->m_sprite.setPosition(sf::Vector2f(x * (this->getSize().m_x + 1) + this->getSize().m_x / 2 + 10,
+		y * (this->getSize().m_x + 1) + 60));
 }
 
 bool GameObject::collidesWith(const GameObject& obj)

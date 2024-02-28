@@ -26,6 +26,7 @@ private:
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 
 	sf::Clock m_clock, m_movementClock;
+	sf::RectangleShape m_border;
 
 	int m_rows, m_cols, m_timeLimit;
 
@@ -46,7 +47,9 @@ public:
 	//init level
 	bool getLevel(const int);
 	void initVector(char, Vertex);
+	void initBorder();
 	void handleAndMove();
+	void boardCollisions(int);
 		
 	void updateStatus(MovingObject*);
 	void resetLocations();
@@ -66,4 +69,5 @@ public:
 	void setNextObj();
 	void setToRemove(MovingObject*);
 	void setToFreeze();
+	void setTime();
 };

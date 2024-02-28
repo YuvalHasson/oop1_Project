@@ -111,3 +111,4 @@ void Mouse::addLife()
 {
 	this->m_lives++;
 }
+

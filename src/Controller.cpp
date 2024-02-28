@@ -141,7 +141,9 @@ void Controller::returnToMenu()
 	this->m_board.resetClock();
 	this->m_gameState = GAME_STATE::MAIN_MENU;
 	this->m_level = 1;
+	this->m_board.setLevel(m_level);
 	this->m_board.setLives(3);
+	this->m_board.setTime();
 	this->m_board.setPoints(0);
 	this->m_board.getLevel(this->m_level);
 }

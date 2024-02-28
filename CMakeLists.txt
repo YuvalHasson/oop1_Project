@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.26)
 
-project (oop1_Project)
-set (MY_AUTHORS "")
+project (oop1_project)
+set (MY_AUTHORS "Yuval_Hasson-Or_Shain")
 
 include (cmake/CompilerSettings.cmake)
 

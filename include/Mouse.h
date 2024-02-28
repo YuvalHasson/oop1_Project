@@ -23,6 +23,7 @@ public:
 	virtual void handleCollision(Key&) override;
 	virtual void handleCollision(Door&) override;
 	virtual void handleCollision(Present&) override;
+	
 
 	//get
 	int getKeys() const;

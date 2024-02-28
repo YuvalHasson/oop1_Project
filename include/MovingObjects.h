@@ -30,6 +30,7 @@ public:
 	virtual void directionLeft();
 	virtual void directionRight();
 	virtual void resetDirection();
+	void borderCollision();
 
 	//get
 	virtual sf::Vector2f getDirection() const;

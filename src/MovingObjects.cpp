@@ -44,6 +44,14 @@ void MovingObject::resetDirection()
 	this->m_direction = sf::Vector2f(0, 0);
 }
 
+
+void MovingObject::borderCollision()
+{
+	this->setLocation(this->getLastLocation());
+	this->getSprite().setPosition(this->getLastLocation());
+}
+
+
 sf::Vector2f MovingObject::getDirection() const
 {
 	return this->m_direction;
