@@ -12,7 +12,7 @@ public:
 	Cat(Vertex, Size, int);
 
 	//move
-	virtual void move(sf::Time);
+	virtual void move(sf::Time) {};
 
 	virtual void handleCollision(GameObject&) override;
 
@@ -26,4 +26,5 @@ public:
 
 	//get
 	static bool getFreeze();
+	bool getMetWall();
 };

@@ -50,6 +50,7 @@ bool Board::getLevel(const int level)
 void Board::initVector(char c, Vertex loc)
 {
 	int randomPresent;
+	int randomCat;
 
 	float size_x = (windowHeight - loc.m_x) / std::max(m_rows, m_cols);
 	float size_y = (WindowWidth - loc.m_y) / std::max(m_rows, m_cols);
@@ -62,7 +63,15 @@ void Board::initVector(char c, Vertex loc)
 			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size_x, size_y), m_lives, MouseSpeed));
 			break;
 		case '^': //Cat
-			this->m_movingObjects.push_back(std::make_unique<Cat>(loc, Size(size_x, size_y), CatSpeed));
+			randomCat = rand() % 2;
+			if (randomCat == 0)
+			{
+				this->m_movingObjects.push_back(std::make_unique<SmartCat>(loc, Size(size_x, size_y), CatSpeed));
+			}
+			else if (randomCat == 1)
+			{
+				this->m_movingObjects.push_back(std::make_unique<DumbCat>(loc, Size(size_x, size_y), CatSpeed));
+			}
 			break;
 		case '#': //Wall
 			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size_x, size_y)));
@@ -77,7 +86,6 @@ void Board::initVector(char c, Vertex loc)
 			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size_x, size_y)));
 			break;
 		case '$': //Present
-
 			if (this->m_timeLimit != -1)
 			{
 				randomPresent  = rand() % 4;

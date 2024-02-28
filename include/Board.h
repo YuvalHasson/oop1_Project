@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <iostream>
 #include <memory>
 
 #include "GameStatus.h"
@@ -17,8 +16,8 @@
 #include "PresentCat.h"
 #include "PresentTime.h"
 #include "PresentFreeze.h"
-#include "Cat.h"
-
+#include "SmartCat.h"
+#include "DumbCat.h"
 
 class Board
 {
