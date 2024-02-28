@@ -30,6 +30,16 @@ void Cat::handleCollision(Door&)
 	this->getSprite().setPosition(this->getLastLocation());
 }
 
+void Cat::handleCollision(Cat& cat)
+{
+	if (this != &cat)
+	{
+		this->setLocation(this->getLastLocation());
+		this->getSprite().setPosition(this->getLastLocation());
+		this->getMetWall();
+	}
+}
+
 void Cat::setFreeze(bool freeze)
 {
 	m_freeze = freeze;

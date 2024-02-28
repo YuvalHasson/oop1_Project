@@ -19,6 +19,7 @@ public:
 	virtual void handleCollision(Mouse&) override;
 	virtual void handleCollision(Wall&) override;
 	virtual void handleCollision(Door&) override;
+	virtual void handleCollision(Cat&) override;
 
 	//set
 	static void setFreeze(bool);

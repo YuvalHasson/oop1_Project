@@ -41,15 +41,21 @@ void GameObject::setSprite(int obj)
 	this->m_sprite.setTexture(*Rescources::getResource().getTexture(obj));
 	this->m_sprite.setScale(s, s);
 	this->m_sprite.setOrigin(sf::Vector2f(this->getSprite().getTexture()->getSize() / 2u));
-	//this->m_sprite.setPosition(sf::Vector2f(this->getSize().m_x * (x + 1.f), this->getSize().m_y * (y + 1.f)));
 	this->m_sprite.setPosition(sf::Vector2f(x * (this->getSize().m_x + 1) + this->getSize().m_x / 2 + 10,
 		y * (this->getSize().m_x + 1) + 60));
 }
 
 bool GameObject::collidesWith(const GameObject& obj)
 {
-	auto a = sf::FloatRect(this->m_sprite.getGlobalBounds().left, this->m_sprite.getGlobalBounds().top,
-		this->m_sprite.getGlobalBounds().width - 5.f, this->m_sprite.getGlobalBounds().height - 10.f);
-	
-	return a.intersects(obj.m_sprite.getGlobalBounds());
+	//auto a = sf::FloatRect(this->m_sprite.getGlobalBounds().left, this->m_sprite.getGlobalBounds().top,
+	//	this->m_sprite.getGlobalBounds().width, this->m_sprite.getGlobalBounds().height);
+	sf::FloatRect a;
+	this->getSprite().getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds(), a);
+
+	if (a.width <= 4.5f || a.height <= 4.5f)
+	{
+		return false;
+	}
+	//return a.intersects(obj.m_sprite.getGlobalBounds());
+	return true;
 }
