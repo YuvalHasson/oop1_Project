@@ -1,6 +1,4 @@
 #include "Board.h"
-#include <iostream>
-
 
 Board::Board()
 	:m_lives(3), m_points(0), m_level(1),
@@ -12,17 +10,10 @@ Board::Board()
 
 void Board::draw(sf::RenderWindow* window)
 {
-	//sf::View topView(sf::FloatRect(0.f, 0.f, 950.f, 60.f));
-	//topView.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 0.09f));
-
-	//sf::View bottomView(sf::FloatRect(0.f, 0.f, 950.f, 830.f));
-	//bottomView.setViewport(sf::FloatRect(0.f, 0.1f, 1.f, 0.8f));
-
-	//window->setView(topView);
 	this->initBorder();
 	window->draw(this->m_border);
+
 	m_status.draw(window);
-	/*window->setView(bottomView);*/
 
 	for (size_t i = 0; i < this->m_staticObjects.size(); i++)
 	{
@@ -65,38 +56,37 @@ void Board::initVector(char c, Vertex loc)
 	int randomPresent;
 	int randomCat;
 
-	float size_x = (WindowWidth / 4 * 3.5) / std::max(m_rows, m_cols);
-	//float size_y = (WindowWidth - loc.m_y) / std::max(m_rows, m_cols);
+	float size = (WindowWidth / 4 * 3.5) / std::max(m_rows, m_cols);
 
 	if (c != ' ')
 	{
 		switch (c)
 		{
 		case '%': //mouse
-			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size_x, size_x), m_lives, MouseSpeed));
+			this->m_movingObjects.push_back(std::make_unique<Mouse>(loc, Size(size, size), m_lives, MouseSpeed));
 			break;
 		case '^': //Cat
 			randomCat = rand() % 2;
 			if (randomCat == 0)
 			{
-				this->m_movingObjects.push_back(std::make_unique<SmartCat>(loc, Size(size_x, size_x), CatSpeed));
+				this->m_movingObjects.push_back(std::make_unique<SmartCat>(loc, Size(size, size), CatSpeed));
 			}
 			else if (randomCat == 1)
 			{
-				this->m_movingObjects.push_back(std::make_unique<DumbCat>(loc, Size(size_x, size_x), CatSpeed));
+				this->m_movingObjects.push_back(std::make_unique<DumbCat>(loc, Size(size, size), CatSpeed));
 			}
 			break;
 		case '#': //Wall
-			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size_x, size_x)));
+			this->m_staticObjects.push_back(std::make_unique<Wall>(loc, Size(size, size)));
 			break;
 		case '*': //Cheese
-			this->m_staticObjects.push_back(std::make_unique<Cheese>(loc, Size(size_x, size_x)));
+			this->m_staticObjects.push_back(std::make_unique<Cheese>(loc, Size(size, size)));
 			break;
 		case 'D': //Door
-			this->m_staticObjects.push_back(std::make_unique<Door>(loc, Size(size_x, size_x)));
+			this->m_staticObjects.push_back(std::make_unique<Door>(loc, Size(size, size)));
 			break;
 		case 'F': //Key
-			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size_x, size_x)));
+			this->m_staticObjects.push_back(std::make_unique<Key>(loc, Size(size, size)));
 			break;
 		case '$': //Present
 			if (this->m_timeLimit != -1)
@@ -110,19 +100,19 @@ void Board::initVector(char c, Vertex loc)
 
 			if (randomPresent == 0)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentLife>(loc, Size(size_x, size_x)));
+				this->m_staticObjects.push_back(std::make_unique<PresentLife>(loc, Size(size, size)));
 			}	
 			else if (randomPresent == 1)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentCat>(loc, Size(size_x, size_x)));
+				this->m_staticObjects.push_back(std::make_unique<PresentCat>(loc, Size(size, size)));
 			}
 			else if (randomPresent == 2)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentFreeze>(loc, Size(size_x, size_x)));
+				this->m_staticObjects.push_back(std::make_unique<PresentFreeze>(loc, Size(size, size)));
 			}
 			else if (randomPresent == 3)
 			{
-				this->m_staticObjects.push_back(std::make_unique<PresentTime>(loc, Size(size_x, size_x)));
+				this->m_staticObjects.push_back(std::make_unique<PresentTime>(loc, Size(size, size)));
 			}
 			break;
 		default:
@@ -138,8 +128,6 @@ void Board::initBorder()
 	this->m_border.setSize(sf::Vector2f(size_x, size_y));
 	this->m_border.setPosition(sf::Vector2f(15.f, 60.f));
 	this->m_border.setFillColor(sf::Color::Transparent);
-	//this->m_border.setOutlineThickness(2.f);
-
 }
 
 void Board::handleAndMove()

@@ -1,7 +1,5 @@
 #include "DumbCat.h"
 
-#include <iostream>
-
 DumbCat::DumbCat(Vertex loc, Size size, int speed)
 	:Cat(loc, size, speed)
 {
@@ -19,8 +17,6 @@ void DumbCat::move(sf::Time deltaTime)
 	}
 
 	this->setLastLocation(this->getLocation());
-
-	auto s = this->getSize().m_x / 380;
 
 	switch (randNumber)
 	{

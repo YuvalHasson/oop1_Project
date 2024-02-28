@@ -1,5 +1,4 @@
 #include "Cat.h"
-#include <iostream>
 
 bool Cat::m_freeze = false;
 
@@ -62,7 +61,7 @@ bool Cat::getFreeze()
 	return m_freeze;
 }
 
-bool Cat::getMetWall()
+bool Cat::getMetWall() const
 {
 	return this->m_isMetWall;
 }

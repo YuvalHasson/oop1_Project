@@ -1,7 +1,5 @@
 #include "PresentCat.h"
 
-#include <iostream>
-
 bool PresentCat::m_presentTaken = false;
 
 PresentCat::PresentCat(Vertex loc, Size size)

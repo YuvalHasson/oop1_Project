@@ -27,5 +27,5 @@ public:
 
 	//get
 	static bool getFreeze();
-	bool getMetWall();
+	bool getMetWall() const;
 };
