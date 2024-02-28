@@ -14,7 +14,7 @@ MainMenu::MainMenu()
 	m_newGameTxt.setFont(*Rescources::getResource().getFont());
 	m_newGameTxt.setString("NEW GAME");
 	m_newGameTxt.setStyle(sf::Text::Bold);
-	m_newGameTxt.setPosition(385, 240.f);
+	m_newGameTxt.setPosition(395, 240.f);
 
 	// set help button
 	m_helpBtn.setPosition(320, 320.f);
