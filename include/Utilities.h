@@ -10,7 +10,7 @@ struct Size {
 	float m_y;
 };
 
-const int OBJ_AMOUNT = 14;
+const int OBJ_AMOUNT = 15;
 const int SOUND_AMOUNT = 13;
 const int BACK_SOUND_AMNT = 2;
 
@@ -50,6 +50,7 @@ namespace TEXTURE
 	constexpr int heart = 11;
 	constexpr int score = 12;
 	constexpr int clock = 13;
+	constexpr int icon = 14;
 }
 
 namespace SOUND

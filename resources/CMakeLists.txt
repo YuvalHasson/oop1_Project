@@ -16,6 +16,7 @@ configure_file ("Help.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Heart.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Scoreboard.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Clock.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Logo.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Monkeys.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("KeysPickup.ogg" ${CMAKE_BINARY_DIR} COPYONLY)

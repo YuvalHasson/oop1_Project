@@ -5,6 +5,8 @@ Controller::Controller()
 	m_level(0), m_lives(3), m_points(0)
 {
 	this->m_window.setFramerateLimit(60);
+	this->m_window.setIcon(Rescources::getResource().getIcon()->getSize().x, Rescources::getResource().getIcon()->getSize().y,
+		Rescources::getResource().getIcon()->getPixelsPtr());
 	SoundResource::getSound().playBackground(BACKGROUND::menu);
 }
 

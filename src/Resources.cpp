@@ -6,6 +6,7 @@ Rescources::Rescources()
 	{
 		this->m_texture[i].loadFromFile(this->m_imgName[i]);
 	}
+	this->m_icon.loadFromFile(this->m_imgName[TEXTURE::icon]);
 	this->m_font.loadFromFile("C:/Windows/Fonts/Tahoma.ttf");
 }
 
@@ -27,4 +28,9 @@ sf::Font* Rescources::getFont()
 sf::Texture* Rescources::getTexture(int obj)
 {
 	return &m_texture[obj];
+}
+
+sf::Image* Rescources::getIcon()
+{
+	return &m_icon;
 }

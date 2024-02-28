@@ -10,9 +10,10 @@ private:
 		"Mouse.png", "Cat.png", "Cheese.png",
 		"Door.png", "Key.png", "Present.png", "Wall.png",
 		"Background.png", "Menu.png", "Button.png", "Help.png",
-		"Heart.png", "Scoreboard.png", "Clock.png"
+		"Heart.png", "Scoreboard.png", "Clock.png", "Logo.png"
 	};
 	sf::Texture m_texture[OBJ_AMOUNT];
+	sf::Image m_icon;
 	sf::Font m_font;
 
 public:
@@ -22,5 +23,6 @@ public:
 
 	//get
 	sf::Texture* getTexture(int);
+	sf::Image* getIcon();
 	sf::Font* getFont();
 };
