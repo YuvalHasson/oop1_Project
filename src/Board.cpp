@@ -123,7 +123,7 @@ void Board::initVector(char c, Vertex loc)
 
 void Board::initBorder()
 {
-	float size_x = (windowHeight / 4 * 3.5) / std::max(m_rows, m_cols) * (m_cols + 1);
+	float size_x = (windowHeight / 4 * 3.5) / std::max(m_rows, m_cols) * (m_cols + 2);
 	float size_y = (WindowWidth / 4 * 3.5) / std::max(m_rows, m_cols) * (m_rows + 1);
 	this->m_border.setSize(sf::Vector2f(size_x, size_y));
 	this->m_border.setPosition(sf::Vector2f(15.f, 60.f));

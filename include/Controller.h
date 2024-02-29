@@ -33,6 +33,7 @@ public:
 	void updateLevel();
 	void menu();
 	void returnToMenu();
+	void screen(int);
 
 	//init
 	sf::Sprite initBackground();

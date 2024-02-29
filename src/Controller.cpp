@@ -44,7 +44,8 @@ void Controller::pollEvent()
 				}
 				else
 				{
-					this->m_window.close();
+					this->returnToMenu();
+					//this->m_window.close();
 				}
 			}
 			break;
@@ -109,6 +110,8 @@ void Controller::updateLevel()
 		if (this->m_board.getLives() <= 0)
 		{
 			SoundResource::getSound().playSound(SOUND::lose);
+			this->screen(TEXTURE::background);
+			
 			this->returnToMenu();
 		}
 	}
@@ -148,6 +151,24 @@ void Controller::returnToMenu()
 	this->m_board.setTime();
 	this->m_board.setPoints(0);
 	this->m_board.getLevel(this->m_level);
+}
+
+void Controller::screen(int screen)
+{
+	sf::Sprite s;
+	s.setTexture(*Rescources::getResource().getTexture(screen));
+	s.setPosition(0.f, 0.f);
+	m_window.draw(s);
+
+	while (true)
+	{
+		m_window.clear();
+		m_window.draw(s);
+		m_window.display();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			break;
+		}
+	}
 }
 
 sf::Sprite Controller::initBackground()
