@@ -1,4 +1,6 @@
 #include "Controller.h"
+#include <chrono>
+#include <thread>
 
 Controller::Controller()
 	:m_window(sf::VideoMode(WindowWidth, windowHeight), "Mouse & Cat", sf::Style::Close | sf::Style::Titlebar),
@@ -111,7 +113,6 @@ void Controller::updateLevel()
 		{
 			SoundResource::getSound().playSound(SOUND::lose);
 			this->screen(TEXTURE::lost);
-			
 			this->returnToMenu();
 		}
 	}
@@ -157,18 +158,12 @@ void Controller::screen(int screen)
 {
 	sf::Sprite s;
 	s.setTexture(*Rescources::getResource().getTexture(screen));
-	s.setPosition(0.f, 0.f);
+	m_window.clear();
 	m_window.draw(s);
+	m_window.display();
+	
+	std::this_thread::sleep_for(std::chrono::seconds(5));
 
-	while (true)
-	{
-		m_window.clear();
-		m_window.draw(s);
-		m_window.display();
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			break;
-		}
-	}
 }
 
 sf::Sprite Controller::initBackground()

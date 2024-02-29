@@ -17,25 +17,32 @@ void DumbCat::move(sf::Time deltaTime)
 	}
 
 	this->setLastLocation(this->getLocation());
-
+	auto s = this->getSize().m_x / 380;
 	switch (randNumber)
 	{
 	case 0:
 		this->directionDown();
+		this->getSprite().setRotation(270.f);
+		this->getSprite().setScale(-s, -s);
 		break;
 	case 1:
 		this->directionLeft();
+		this->getSprite().setRotation(180.f);
+		this->getSprite().setScale(s, -s);
 		break;
 	case 2:
 		this->directionRight();
+		this->getSprite().setRotation(0.f);
+		this->getSprite().setScale(s, s);
 		break;
 	case 3:
 		this->directionUp();
+		this->getSprite().setRotation(90.f);
+		this->getSprite().setScale(-s, s);
 		break;
 	default:
 		break;
 	}
-
 
 	if (Cat::getFreeze())
 	{
