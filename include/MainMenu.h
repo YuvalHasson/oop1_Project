@@ -3,10 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "Utilities.h"
 #include "Resources.h"
-#include <chrono>
-#include <thread>
-
-using namespace std::chrono_literals;
 
 class MainMenu
 {

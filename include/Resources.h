@@ -10,7 +10,8 @@ private:
 		"Mouse.png", "Cat.png", "Cheese.png",
 		"Door.png", "Key.png", "Present.png", "Wall.png",
 		"Background.png", "Menu.png", "Button.png", "Help.png",
-		"Heart.png", "Scoreboard.png", "Clock.png", "Logo.png"
+		"Heart.png", "Scoreboard.png", "Clock.png", "Logo.png",
+		"GameOver.png", "Winner.png"
 	};
 	sf::Texture m_texture[OBJ_AMOUNT];
 	sf::Image m_icon;

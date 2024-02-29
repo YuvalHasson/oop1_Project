@@ -45,7 +45,6 @@ void Controller::pollEvent()
 				else
 				{
 					this->returnToMenu();
-					//this->m_window.close();
 				}
 			}
 			break;
@@ -83,6 +82,7 @@ void Controller::updateLevel()
 			if (!this->m_board.getLevel(this->m_level))
 			{
 				SoundResource::getSound().playSound(SOUND::win);
+				this->screen(TEXTURE::win);
 				this->returnToMenu();
 			}
 			else
@@ -110,7 +110,7 @@ void Controller::updateLevel()
 		if (this->m_board.getLives() <= 0)
 		{
 			SoundResource::getSound().playSound(SOUND::lose);
-			this->screen(TEXTURE::background);
+			this->screen(TEXTURE::lost);
 			
 			this->returnToMenu();
 		}
